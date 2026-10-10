@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "github:status": "node scripts/github-status.js",
+    "github:sync": "node scripts/github-sync.js",
+    "github:watch": "node scripts/github-watch.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",
