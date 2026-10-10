@@ -33,3 +33,16 @@ This is a complete, production-quality frontend application for RUCHI RICH (Ramr
 - **Product Images**: All 9 product images are mapped. Ensure they are correctly exported.
 - **Contact Details**: The provided contact details (`src/config/contact.ts`) use the placeholder email. Please verify if an official email needs to be added.
 - **WhatsApp Number**: Currently using `9848246556` for WhatsApp integration. Ensure this number is active on WhatsApp.
+
+
+## GitHub Sync Workflow
+
+The project includes automated scripts for safe Git workflows:
+
+- \
+pm run github:status\: View the current Git status.
+- \
+pm run github:sync\: Automatically checks for changes, stages them, asks for a commit message, and pushes to GitHub.
+- \
+pm run github:watch\: (Optional) Automatically watches for file changes and syncs them after 10 seconds of inactivity.
+
