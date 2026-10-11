@@ -117,7 +117,7 @@ export const BrandIntro: React.FC<BrandIntroProps> = ({ onComplete }) => {
               className="space-y-1.5"
             >
               <span className="block text-sm sm:text-base font-serif font-bold uppercase tracking-[0.28em] text-brand-gold">
-                Ramraj Oil Industries
+                RAMRAJ RUCHI RICH
               </span>
               <span className="block text-xs sm:text-sm text-brand-ivory/85 font-light tracking-[0.2em] uppercase">
                 Fresh & Active Spices

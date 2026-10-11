@@ -232,7 +232,7 @@ export const SpiceIngredientShowcase: React.FC<SpiceIngredientShowcaseProps> = (
             </div>
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-brand-gold font-serif block">
-                Ramraj Oil Industries
+                RAMRAJ RUCHI RICH
               </span>
               <span className="text-xs text-brand-ivory/80 block mt-0.5 font-light">
                 ALEAP Industrial Estate, Surampalli, Andhra Pradesh

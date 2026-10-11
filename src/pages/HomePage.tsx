@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
           Layer B: Dominant foreground 3D product stage with illuminated pedestal
           Layer C: Clear brand message, concise copy, and high-visibility CTAs
           ========================================================================= */}
-      <section className="relative min-h-[660px] lg:min-h-[760px] bg-gradient-to-br from-[#051C10] via-[#0A331C] to-[#04150B] overflow-x-clip overflow-y-hidden flex items-center">
+      <section className="relative min-h-[660px] lg:min-h-[760px] bg-gradient-to-br from-[#051C10] via-[#0A331C] to-[#04150B] overflow-x-clip flex items-center">
         {/* Subtle Ambient Golden Spice Specks */}
         <SpiceDustParticles />
 
@@ -82,7 +82,7 @@ const HomePage: React.FC = () => {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-emerald/40 border border-brand-gold/40 text-brand-gold text-xs sm:text-sm font-semibold tracking-wider uppercase mb-5 backdrop-blur-md shadow-sm"
               >
                 <Sparkles className="w-4 h-4 text-brand-gold animate-pulse flex-shrink-0" />
-                <span>RUCHI RICH • BY RAMRAJ OIL INDUSTRIES</span>
+                <span>RAMRAJ RUCHI RICH</span>
               </motion.div>
 
               {/* Headline with Sequenced Line Reveals */}
@@ -138,7 +138,7 @@ const HomePage: React.FC = () => {
 
                 <a
                   href={`https://wa.me/${contactConfig.whatsappNumber}?text=${encodeURIComponent(
-                    'Hello RUCHI RICH Team, I would like to enquire about spice catalogue availability and ordering.'
+                    'Hello RAMRAJ RUCHI RICH Team, I would like to enquire about spice catalogue availability and ordering.'
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -162,7 +162,7 @@ const HomePage: React.FC = () => {
                 </div>
                 <div>
                   <span className="block font-bold text-brand-gold font-serif text-base sm:text-lg">Authentic Product Range</span>
-                  <span className="text-xs sm:text-sm text-brand-ivory/75 font-light">Ramraj Oil Industries</span>
+                  <span className="text-xs sm:text-sm text-brand-ivory/75 font-light">RAMRAJ RUCHI RICH</span>
                 </div>
                 <div>
                   <span className="block font-bold text-brand-gold font-serif text-base sm:text-lg">Direct WhatsApp Ordering</span>
@@ -295,7 +295,7 @@ const HomePage: React.FC = () => {
           Left: Architectural framed studio photograph with layered floating product & gold orbital rings
           Right: Editorial headline, animated gold divider line, 3 craft pillars, and dual CTAs
           ========================================================================= */}
-      <section className="py-20 sm:py-28 bg-gradient-to-b from-[#051C10] via-[#082817] to-[#04150B] text-brand-ivory relative overflow-hidden">
+      <section id="heritage" className="py-20 sm:py-28 bg-gradient-to-b from-[#051C10] via-[#082817] to-[#04150B] text-brand-ivory relative overflow-hidden">
         {/* Ambient Golden Light Rays & Atelier Radiance */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-brand-gold/15 blur-3xl" />
@@ -341,9 +341,8 @@ const HomePage: React.FC = () => {
 
                   {/* Narrative Body Copy - Verified, minimum 16px, high legibility */}
                   <p className="text-base sm:text-lg text-brand-ivory/90 leading-relaxed font-light">
-                    At <strong className="text-white font-semibold">Ramraj Oil Industries</strong>, spices are more than cooking ingredients—they are the
-                    cornerstone of wellness, authentic hospitality, and generational culinary memory. Under our flagship brand,{' '}
-                    <strong className="text-brand-gold">RUCHI RICH</strong>, we uphold an uncompromising commitment to purity and traditional spice craftsmanship.
+                    At <strong className="text-white font-semibold">RAMRAJ RUCHI RICH</strong>, spices are more than cooking ingredients—they are the
+                    cornerstone of wellness, authentic hospitality, and generational culinary memory. We uphold an uncompromising commitment to purity and traditional spice craftsmanship.
                   </p>
 
                   <p className="text-base sm:text-lg text-brand-ivory/90 leading-relaxed font-light">

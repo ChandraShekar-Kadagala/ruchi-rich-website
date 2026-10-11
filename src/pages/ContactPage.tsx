@@ -32,7 +32,7 @@ const ContactPage: React.FC = () => {
             <div className="mt-3 w-20 h-1 bg-brand-gold mx-auto rounded-full" />
             <p className="mt-4 text-base sm:text-lg text-brand-charcoal/75 font-normal leading-relaxed">
               Have questions about our pure powders, blended masalas, bulk order quotations, or trade distribution?
-              Connect directly with our team at Ramraj Oil Industries.
+              Connect directly with our team at RAMRAJ RUCHI RICH.
             </p>
           </div>
         </Reveal>
@@ -86,7 +86,7 @@ const ContactPage: React.FC = () => {
                         rel="noopener noreferrer"
                         className="text-base sm:text-lg text-brand-charcoal font-bold hover:text-[#25D366] transition-colors mt-1 block"
                       >
-                        +{contactConfig.whatsappNumber}
+                        {contactConfig.phoneDisplay}
                       </a>
                       <span className="text-xs text-brand-charcoal/60 block mt-0.5">
                         Fastest response for retail & wholesale quotations
@@ -104,10 +104,10 @@ const ContactPage: React.FC = () => {
                         Customer Care Desk
                       </h3>
                       <a
-                        href={`tel:${contactConfig.customerCarePhone}`}
+                        href={`tel:${contactConfig.phoneNumber}`}
                         className="text-base sm:text-lg text-brand-charcoal font-bold hover:text-brand-emerald transition-colors mt-1 block"
                       >
-                        +91 {contactConfig.customerCarePhone}
+                        {contactConfig.phoneDisplay}
                       </a>
                       <span className="text-xs text-brand-charcoal/60 block mt-0.5">
                         Direct telephone support
@@ -235,7 +235,7 @@ const ContactPage: React.FC = () => {
               </div>
 
               <div className="mt-8 pt-6 border-t border-white/15 flex items-center justify-between text-xs text-white/70">
-                <span>Ramraj Oil Industries — RUCHI RICH</span>
+                <span>RAMRAJ RUCHI RICH</span>
                 <span>Mon – Sat, 9:00 AM – 6:00 PM IST</span>
               </div>
             </div>

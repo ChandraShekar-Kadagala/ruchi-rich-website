@@ -31,6 +31,10 @@ const Navbar: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
   const cartCount = getCartCount();
 
+  const handleLogoClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <header
       className={`sticky top-0 z-40 transition-all duration-300 ${
@@ -44,18 +48,20 @@ const Navbar: React.FC = () => {
           {/* Brand Logo */}
           <Link
             to="/"
-            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald rounded-lg"
+            onClick={handleLogoClick}
+            aria-label="RAMRAJ RUCHI RICH — Home"
+            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald rounded-lg cursor-pointer"
           >
             <div className="relative">
               <img
                 src="/assets/brand/ruchi-rich-logo.png"
-                alt="RUCHI RICH — Fresh & Active by Ramraj Oil Industries"
+                alt="RAMRAJ RUCHI RICH — Fresh & Active Spices"
                 className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <div className="hidden lg:flex flex-col border-l border-brand-charcoal/15 pl-3">
               <span className="text-xs uppercase tracking-widest text-brand-emerald font-bold font-serif">
-                Ramraj Oil Industries
+                RAMRAJ RUCHI RICH
               </span>
               <span className="text-xs text-brand-charcoal/70 tracking-wider">
                 Fresh & Active Spices

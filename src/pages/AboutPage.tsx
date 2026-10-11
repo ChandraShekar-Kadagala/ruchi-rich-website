@@ -18,11 +18,11 @@ const AboutPage: React.FC = () => {
               <span>Company Profile</span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-brand-charcoal">
-              Ramraj Oil Industries
+              RAMRAJ RUCHI RICH
             </h1>
             <div className="mt-3 w-20 h-1 bg-brand-gold mx-auto rounded-full" />
             <p className="mt-4 text-base sm:text-lg text-brand-charcoal/70 font-light">
-              Makers of <strong>RUCHI RICH</strong> — Fresh & Active Spices
+              Fresh & Active Spices Ground to Perfection
             </p>
           </div>
         </Reveal>
@@ -35,9 +35,8 @@ const AboutPage: React.FC = () => {
                 Our Vision & Identity
               </h2>
               <p className="text-base sm:text-lg text-brand-charcoal/85 leading-relaxed font-normal">
-                <strong>Ramraj Oil Industries</strong> is a trusted manufacturing enterprise committed to bringing pure,
-                wholesome culinary essentials to kitchens across India. Under our flagship consumer spice brand,{' '}
-                <strong className="text-brand-emerald">RUCHI RICH</strong>, we produce a comprehensive portfolio of pure spice
+                <strong>RAMRAJ RUCHI RICH</strong> is a trusted enterprise committed to bringing pure,
+                wholesome culinary essentials to kitchens across India. We produce a comprehensive portfolio of pure spice
                 powders and expertly formulated spice blends.
               </p>
             </div>

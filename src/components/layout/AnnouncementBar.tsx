@@ -12,7 +12,7 @@ const AnnouncementBar: React.FC = () => {
         <div className="flex items-center gap-2 mx-auto sm:mx-0">
           <Sparkles className="w-3.5 h-3.5 text-brand-gold animate-pulse hidden sm:inline" />
           <p className="font-medium tracking-wide">
-            <span className="text-brand-gold font-bold">RUCHI RICH</span> by Ramraj Oil Industries — Fresh & Active Spices Ground to Perfection
+            <span className="text-brand-gold font-bold">RAMRAJ RUCHI RICH</span> — Fresh & Active Spices Ground to Perfection
           </p>
         </div>
         <div className="hidden md:flex items-center gap-4 text-xs">

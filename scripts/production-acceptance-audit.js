@@ -146,8 +146,8 @@ const contactFilePath = path.join(projectRoot, 'src', 'config', 'contact.ts');
 assert(fs.existsSync(contactFilePath), 'src/config/contact.ts exists');
 const contactContent = fs.readFileSync(contactFilePath, 'utf8');
 
-assert(contactContent.includes('9848246556'), 'Configured WhatsApp number is verified: 9848246556');
-assert(contactContent.includes('9398075918'), 'Configured Customer Care phone is verified: 9398075918');
+assert(contactContent.includes('9490673788'), 'Configured customer-facing phone and WhatsApp number is verified: 9490673788');
+assert(contactContent.includes('RAMRAJ RUCHI RICH'), 'Brand name verified in contact config: RAMRAJ RUCHI RICH');
 assert(contactContent.includes('ramrajoilindustries@gmail.com'), 'Configured business email is authentic: ramrajoilindustries@gmail.com');
 assert(!contactContent.includes('example.com'), 'Zero placeholder/example emails in contactConfig');
 assert(contactContent.includes('ALEAP Industrial Estate, Surampalli'), 'Physical manufacturing address verified at ALEAP Estate, Surampalli');

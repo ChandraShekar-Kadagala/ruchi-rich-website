@@ -2,7 +2,7 @@ import { CartItem } from '../types/cart';
 import { contactConfig } from '../config/contact';
 
 export const generateWhatsAppMessage = (cartItems: CartItem[]): string => {
-  let message = `Hello RUCHI RICH Team,\n\nI would like to enquire about the following products:\n\n`;
+  let message = `Hello RAMRAJ RUCHI RICH Team,\n\nI would like to enquire about the following products:\n\n`;
 
   cartItems.forEach((item, index) => {
     message += `${index + 1}. ${item.product.name}\n`;

@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
                 Fresh & Active Spices
               </p>
               <p className="text-sm sm:text-base text-brand-ivory/85 leading-relaxed font-light">
-                A flagship consumer spice brand of <strong className="text-white">Ramraj Oil Industries</strong>.
+                Official presentation of <strong className="text-white">RAMRAJ RUCHI RICH</strong>.
                 Crafting premium pure spice powders and aromatic blended masalas that define the heart of authentic Indian cooking.
               </p>
             </div>
@@ -168,6 +168,16 @@ const Footer: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 text-brand-gold flex-shrink-0" />
+                  <a
+                    href={`tel:${contactConfig.phoneNumber}`}
+                    className="hover:text-brand-gold transition-colors"
+                  >
+                    Customer Care: {contactConfig.phoneDisplay}
+                  </a>
+                </div>
+
+                <div className="flex items-center gap-2.5">
                   <MessageCircle className="w-4 h-4 text-[#25D366] flex-shrink-0" />
                   <a
                     href={`https://wa.me/${contactConfig.whatsappNumber}`}
@@ -175,17 +185,7 @@ const Footer: React.FC = () => {
                     rel="noopener noreferrer"
                     className="hover:text-brand-gold transition-colors"
                   >
-                    WhatsApp: +{contactConfig.whatsappNumber}
-                  </a>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-brand-gold flex-shrink-0" />
-                  <a
-                    href={`tel:${contactConfig.customerCarePhone}`}
-                    className="hover:text-brand-gold transition-colors"
-                  >
-                    Customer Care: +91 {contactConfig.customerCarePhone}
+                    WhatsApp: {contactConfig.phoneDisplay}
                   </a>
                 </div>
 
@@ -217,7 +217,7 @@ const Footer: React.FC = () => {
 
         {/* Copyright & Disclaimer */}
         <div className="mt-12 pt-6 border-t border-brand-emerald/40 flex flex-col md:flex-row items-center justify-between text-xs sm:text-sm text-brand-ivory/70 gap-4">
-          <p>© {currentYear} Ramraj Oil Industries — RUCHI RICH. All rights reserved.</p>
+          <p>© {currentYear} RAMRAJ RUCHI RICH. All rights reserved.</p>
           <div className="flex items-center gap-2 text-xs">
             <span>Crafted with</span>
             <Heart className="w-3.5 h-3.5 text-brand-red fill-brand-red" />

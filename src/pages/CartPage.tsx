@@ -200,7 +200,7 @@ const CartPage: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <span>Proceed to WhatsApp (+{contactConfig.whatsappNumber})</span>
+                    <span>Proceed to WhatsApp ({contactConfig.phoneDisplay})</span>
                     <ExternalLink className="w-4 h-4" />
                   </>
                 )}
@@ -209,7 +209,7 @@ const CartPage: React.FC = () => {
 
             <div className="pt-2 flex items-center justify-center gap-2 text-xs text-brand-charcoal/60">
               <ShieldCheck className="w-4 h-4 text-brand-emerald" />
-              <span>Official WhatsApp Channel of Ramraj Oil Industries — RUCHI RICH</span>
+              <span>Official WhatsApp Channel of RAMRAJ RUCHI RICH</span>
             </div>
           </div>
         </Reveal>

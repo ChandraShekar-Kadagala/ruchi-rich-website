@@ -100,7 +100,7 @@ const ProductDetailPage: React.FC = () => {
 
   const handleDirectWhatsApp = () => {
     if (!selectedOption) return;
-    const directMessage = `Hello RUCHI RICH Team,\n\nI would like to enquire about:\n- Product: ${product.name}\n- Package: ${selectedOption.label}\n- Quantity: ${quantity}\n\nPlease confirm availability and share quotation details.\n\nThank you!`;
+    const directMessage = `Hello RAMRAJ RUCHI RICH Team,\n\nI would like to enquire about:\n- Product: ${product.name}\n- Package: ${selectedOption.label}\n- Quantity: ${quantity}\n\nPlease confirm availability and share quotation details.\n\nThank you!`;
     const link = `https://wa.me/${contactConfig.whatsappNumber}?text=${encodeURIComponent(directMessage)}`;
     window.open(link, '_blank');
   };
@@ -210,7 +210,7 @@ const ProductDetailPage: React.FC = () => {
                     {product.category}
                   </span>
                   <span className="text-sm text-brand-charcoal/60 font-medium font-serif">
-                    Ramraj Oil Industries
+                    RAMRAJ RUCHI RICH
                   </span>
                 </motion.div>
 
@@ -369,7 +369,7 @@ const ProductDetailPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Feedback Notification if added */}
+                  {/* Feedback Notification if added with product-specific spice accent */}
                   <AnimatePresence>
                     {showFeedback && (
                       <motion.div
@@ -377,13 +377,32 @@ const ProductDetailPage: React.FC = () => {
                         animate={{ opacity: 1, x: 0, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.25 }}
-                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-brand-forest text-brand-gold rounded-xl text-sm font-bold shadow-md self-end sm:self-center"
+                        className="relative inline-flex items-center gap-2 px-4 py-2.5 bg-brand-forest text-brand-gold rounded-xl text-sm font-bold shadow-md self-end sm:self-center border"
+                        style={{
+                          borderColor: (spiceThemes[product.id] || defaultSpiceTheme).primary,
+                          boxShadow: `0 4px 14px ${(spiceThemes[product.id] || defaultSpiceTheme).glow}`,
+                        }}
                       >
-                        <Check className="w-4 h-4 text-brand-gold" />
+                        {/* Subtle product spice particles burst */}
+                        {!shouldReduceMotion && (
+                          <div className="absolute inset-0 pointer-events-none overflow-visible" aria-hidden="true">
+                            {((spiceThemes[product.id] || defaultSpiceTheme).particleColors || ['#F59E0B']).slice(0, 4).map((color, idx) => (
+                              <motion.span
+                                key={idx}
+                                initial={{ opacity: 0.9, y: 0, x: (idx - 1.5) * 14, scale: 0.8 }}
+                                animate={{ opacity: 0, y: -22 - idx * 4, x: (idx - 1.5) * 20, scale: 0.4 }}
+                                transition={{ duration: 0.85, delay: idx * 0.08, ease: 'easeOut' }}
+                                className="absolute top-1 left-1/2 w-1.5 h-1.5 rounded-full"
+                                style={{ backgroundColor: color }}
+                              />
+                            ))}
+                          </div>
+                        )}
+                        <Check className="w-4 h-4 text-brand-gold flex-shrink-0" />
                         <span>Added to basket!</span>
                         <button
                           onClick={openDrawer}
-                          className="ml-2 underline text-white hover:text-brand-gold focus:outline-none"
+                          className="ml-2 underline text-white hover:text-brand-gold focus:outline-none cursor-pointer"
                         >
                           Open basket
                         </button>
@@ -513,7 +532,7 @@ const ProductDetailPage: React.FC = () => {
                 {/* Facility & Assurance Line */}
                 <div className="pt-4 border-t border-brand-gold/20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-brand-ivory/70">
                   <span className="font-serif text-brand-gold font-bold">
-                    Ramraj Oil Industries • Surampalli Facility
+                    RAMRAJ RUCHI RICH • Surampalli Facility
                   </span>
                   <span className="text-brand-gold/90 font-medium">
                     Verified Authentic Spice Production
