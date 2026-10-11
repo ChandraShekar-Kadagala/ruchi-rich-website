@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, MessageCircle, Sparkles, ShieldCheck, Flame, Award, ChevronRight, MapPin, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, MessageCircle, Sparkles, ShieldCheck, Flame, ChevronRight, MapPin, CheckCircle2 } from 'lucide-react';
 import { products } from '../data/products';
 import ProductCard from '../components/products/ProductCard';
 import { contactConfig } from '../config/contact';
@@ -9,12 +9,11 @@ import {
   BrandIntro,
   SpiceDustParticles,
   ProductConstellationHero,
+  SpiceIngredientShowcase,
   Reveal,
-  FloatingBotanical,
 } from '../components/motion';
 import {
   brandEase,
-  brandSpring,
   staggerContainerVariants,
   staggerItemVariants,
   goldDividerVariants,
@@ -308,125 +307,10 @@ const HomePage: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Visual Column (5 cols): Master Spice Trio Editorial Composition */}
+            {/* Visual Column (5 cols): Master Spice Atelier & Whole Ingredient Showcase */}
             <div className="lg:col-span-5">
               <Reveal direction="left">
-                <div className="relative group">
-                  {/* Decorative counter-rotating gold geometric orbital rings (stone grinding heritage motif) */}
-                  <div
-                    className="absolute -top-7 -left-7 w-44 h-44 rounded-full border border-brand-gold/25 pointer-events-none animate-[spin_40s_linear_infinite]"
-                    aria-hidden="true"
-                  />
-                  <div
-                    className="absolute -bottom-9 -right-9 w-56 h-56 rounded-full border border-brand-gold/20 pointer-events-none animate-[spin_60s_linear_infinite_reverse]"
-                    aria-hidden="true"
-                  />
-
-                  {/* Floating Spice Botanicals framing the master trio */}
-                  <FloatingBotanical
-                    type="star-anise"
-                    className="absolute -top-5 right-6 w-9 h-9 z-20"
-                    duration={5.8}
-                    delay={0.3}
-                  />
-                  <FloatingBotanical
-                    type="cardamom"
-                    className="absolute bottom-16 -left-4 w-8 h-8 z-20"
-                    duration={6.4}
-                    delay={0.8}
-                  />
-
-                  {/* Main Architectural Studio Frame */}
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-brand-gold/30 bg-[#082817]/85 p-5 sm:p-7 backdrop-blur-md">
-                    {/* Background studio image with vignette */}
-                    <div className="relative h-72 sm:h-80 rounded-2xl overflow-hidden mb-5 bg-[#031A0F]">
-                      {/* Ambient warm radial spotlight */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-56 h-56 rounded-full bg-radial from-brand-gold/30 via-brand-emerald/20 to-transparent blur-2xl" />
-                      </div>
-
-                      {/* Illuminated Ground Dais for the Trio */}
-                      <div
-                        className="absolute bottom-5 left-1/2 -translate-x-1/2 w-56 h-14 rounded-[100%] bg-gradient-to-b from-brand-gold/25 via-brand-emerald/25 to-black/60 border border-brand-gold/30 shadow-[0_0_30px_rgba(214,165,42,0.2)] pointer-events-none"
-                        style={{ transform: 'translateX(-50%) rotateX(68deg)' }}
-                        aria-hidden="true"
-                      />
-
-                      {/* MASTER SPICE TRIO COMPOSITION */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative w-64 h-56 flex items-center justify-center">
-                          {/* Left: Turmeric Powder (Golden Purity) */}
-                          <motion.div
-                            whileHover={{ y: -6, scale: 1.02 }}
-                            transition={brandSpring}
-                            className="absolute -left-1 bottom-4 z-20 cursor-pointer"
-                          >
-                            <Link to="/product/turmeric-powder" aria-label="View Turmeric Powder">
-                              <img
-                                src="/assets/products/turmeric-powder.png"
-                                alt="Authentic Turmeric Powder by RUCHI RICH"
-                                className="h-40 sm:h-44 w-auto object-contain filter drop-shadow-[0_14px_18px_rgba(0,0,0,0.45)] transform -rotate-6"
-                              />
-                              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-24 h-2 bg-black/60 rounded-full blur-[2px]" />
-                            </Link>
-                          </motion.div>
-
-                          {/* Center: Garam Masala (The Royal Blend) */}
-                          <motion.div
-                            whileHover={{ y: -8, scale: 1.05 }}
-                            transition={brandSpring}
-                            className="absolute left-1/2 -translate-x-1/2 bottom-5 z-30 cursor-pointer"
-                          >
-                            <Link to="/product/garam-masala" aria-label="View Garam Masala">
-                              <img
-                                src="/assets/products/garam-masala.png"
-                                alt="Authentic Garam Masala by RUCHI RICH"
-                                className="h-44 sm:h-48 w-auto object-contain filter drop-shadow-[0_20px_25px_rgba(0,0,0,0.55)]"
-                              />
-                              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-28 h-2.5 bg-black/70 rounded-full blur-[2.5px]" />
-                            </Link>
-                          </motion.div>
-
-                          {/* Right: Red Chilli Powder (Fiery Warmth) */}
-                          <motion.div
-                            whileHover={{ y: -6, scale: 1.02 }}
-                            transition={brandSpring}
-                            className="absolute -right-1 bottom-4 z-20 cursor-pointer"
-                          >
-                            <Link to="/product/red-chilli-powder" aria-label="View Red Chilli Powder">
-                              <img
-                                src="/assets/products/red-chilli-powder.png"
-                                alt="Authentic Red Chilli Powder by RUCHI RICH"
-                                className="h-40 sm:h-44 w-auto object-contain filter drop-shadow-[0_14px_18px_rgba(0,0,0,0.45)] transform rotate-6"
-                              />
-                              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-24 h-2 bg-black/60 rounded-full blur-[2px]" />
-                            </Link>
-                          </motion.div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Manufacturing Facility Identity Plaque */}
-                    <div className="bg-[#051C10]/95 backdrop-blur-md p-4 rounded-xl border border-brand-gold/30 shadow-lg flex items-center justify-between gap-3.5">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-lg bg-brand-gold/15 text-brand-gold border border-brand-gold/25 flex-shrink-0">
-                          <Award className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <span className="text-xs font-bold uppercase tracking-widest text-brand-gold font-serif block">
-                            Ramraj Oil Industries
-                          </span>
-                          <span className="text-xs text-brand-ivory/80 block mt-0.5 font-light">
-                            ALEAP Industrial Estate, Surampalli, Andhra Pradesh
-                          </span>
-                        </div>
-                      </div>
-                      <span className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-emerald/40 text-brand-gold border border-brand-gold/30">
-                        Verified Facility
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <SpiceIngredientShowcase initialProductId="garam-masala" showSelector={true} />
               </Reveal>
             </div>
 

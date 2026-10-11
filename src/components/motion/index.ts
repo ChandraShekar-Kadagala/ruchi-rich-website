@@ -5,3 +5,5 @@ export * from './SpiceDustParticles';
 export * from './ProductConstellationHero';
 export * from './ProductSpiceBurst';
 export * from './FloatingSpiceBotanicals';
+export * from './SpiceIngredientCutouts';
+export * from './SpiceIngredientShowcase';

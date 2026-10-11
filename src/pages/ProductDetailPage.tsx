@@ -18,8 +18,20 @@ import { products } from '../data/products';
 import { useCartStore } from '../store/useCartStore';
 import { contactConfig } from '../config/contact';
 import ProductCard from '../components/products/ProductCard';
-import { ProductStage3D, Reveal } from '../components/motion';
+import {
+  ProductStage3D,
+  Reveal,
+  BrassSpiceBowl,
+  TurmericRootCutout,
+  DriedRedChilliCutout,
+  CardamomClusterCutout,
+  CinnamonStickCutout,
+  WholeSpiceAccentsCutout,
+  CorianderSeedsCutout,
+  PepperCuminCutout,
+} from '../components/motion';
 import { spiceThemes, defaultSpiceTheme } from '../utils/spiceThemes';
+import { spiceIngredientProfiles, defaultIngredientProfile } from '../utils/spiceIngredients';
 import { brandEase, brandSpring, staggerContainerVariants, staggerItemVariants } from '../utils/motion';
 
 const ProductDetailPage: React.FC = () => {
@@ -35,6 +47,30 @@ const ProductDetailPage: React.FC = () => {
   );
   const [quantity, setQuantity] = useState(1);
   const [showFeedback, setShowFeedback] = useState(false);
+
+  const ingredientProfile = product
+    ? spiceIngredientProfiles[product.id] || defaultIngredientProfile
+    : defaultIngredientProfile;
+
+  const renderCutout = (cutoutType: string, className = '') => {
+    switch (cutoutType) {
+      case 'turmeric-root':
+        return <TurmericRootCutout className={className} />;
+      case 'chilli':
+        return <DriedRedChilliCutout className={className} />;
+      case 'cardamom':
+        return <CardamomClusterCutout className={className} />;
+      case 'cinnamon':
+        return <CinnamonStickCutout className={className} />;
+      case 'coriander':
+        return <CorianderSeedsCutout className={className} />;
+      case 'pepper':
+        return <PepperCuminCutout className={className} />;
+      case 'spices':
+      default:
+        return <WholeSpiceAccentsCutout className={className} />;
+    }
+  };
 
   if (!product) {
     return (
@@ -110,6 +146,24 @@ const ProductDetailPage: React.FC = () => {
                 }}
                 aria-hidden="true"
               />
+
+              {/* Ambient Whole Spice Ingredients flanking the stage */}
+              <div className="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
+                <motion.div
+                  animate={!shouldReduceMotion ? { y: [-3, 3, -3], rotate: [-2, 2, -2] } : undefined}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute bottom-2 -left-3 sm:bottom-4 sm:left-2 opacity-85 filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.3)] z-10"
+                >
+                  {renderCutout(ingredientProfile.cutoutLeft, 'w-20 sm:w-24 h-auto')}
+                </motion.div>
+                <motion.div
+                  animate={!shouldReduceMotion ? { y: [3, -3, 3], rotate: [2, -2, 2] } : undefined}
+                  transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute bottom-2 -right-3 sm:bottom-4 sm:right-2 opacity-85 filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.3)] z-10"
+                >
+                  {renderCutout(ingredientProfile.cutoutRight, 'w-20 sm:w-24 h-auto')}
+                </motion.div>
+              </div>
 
               {/* Badges */}
               <div className="absolute top-6 left-6 flex flex-col gap-2 z-20">
@@ -396,6 +450,79 @@ const ProductDetailPage: React.FC = () => {
             </div>
           </Reveal>
         )}
+
+        {/* Artisanal Spice Provenance & Botanical Heritage Section */}
+        <Reveal delay={0.15}>
+          <div className="mt-12 bg-gradient-to-br from-[#062013] via-[#051C10] to-[#03150C] text-brand-ivory p-8 sm:p-10 rounded-3xl border border-brand-gold/30 shadow-xl relative overflow-hidden">
+            {/* Subtle radial ambient spotlight matching spice tone */}
+            <div
+              className="absolute -top-16 -right-16 w-80 h-80 rounded-full blur-3xl opacity-20 pointer-events-none"
+              style={{ backgroundColor: ingredientProfile.spiceColor }}
+              aria-hidden="true"
+            />
+
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
+              {/* Left Column: Handcrafted Brass Katori & Ingredient Cutout */}
+              <div className="md:col-span-5 flex flex-col items-center justify-center p-2 sm:p-4">
+                <div className="relative flex items-center justify-center">
+                  <BrassSpiceBowl
+                    spiceColor={ingredientProfile.spiceColor}
+                    spiceHighlight={ingredientProfile.spiceHighlight}
+                    className="w-36 sm:w-44 h-auto drop-shadow-[0_18px_24px_rgba(0,0,0,0.65)]"
+                  />
+                  <div className="absolute -bottom-2 -right-3 pointer-events-none select-none">
+                    {renderCutout(
+                      ingredientProfile.cutoutLeft,
+                      'w-20 sm:w-24 h-auto drop-shadow-[0_12px_14px_rgba(0,0,0,0.4)]'
+                    )}
+                  </div>
+                </div>
+                <span className="text-xs text-brand-gold/85 font-serif tracking-wider uppercase mt-4 text-center">
+                  100% Whole Spices • Cold Stone-Ground Craft
+                </span>
+              </div>
+
+              {/* Right Column: Narrative, Botanical Origin & Credentials */}
+              <div className="md:col-span-7 space-y-4">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs font-bold uppercase tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
+                  <span>{ingredientProfile.storySubtitle}</span>
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl font-serif font-bold text-brand-ivory">
+                  {ingredientProfile.storyTitle}
+                </h3>
+
+                <p className="text-brand-ivory/85 text-sm sm:text-base leading-relaxed font-light">
+                  {ingredientProfile.storyDescription}
+                </p>
+
+                {/* Botanical Ingredient Chips */}
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {ingredientProfile.ingredientBadges.map((badge) => (
+                    <span
+                      key={badge}
+                      className="text-xs font-medium text-brand-gold bg-brand-gold/10 border border-brand-gold/25 px-3 py-1 rounded-full flex items-center gap-1.5"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
+                      <span>{badge}</span>
+                    </span>
+                  ))}
+                </div>
+
+                {/* Facility & Assurance Line */}
+                <div className="pt-4 border-t border-brand-gold/20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-brand-ivory/70">
+                  <span className="font-serif text-brand-gold font-bold">
+                    Ramraj Oil Industries • Surampalli Facility
+                  </span>
+                  <span className="text-brand-gold/90 font-medium">
+                    Verified Authentic Spice Production
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
