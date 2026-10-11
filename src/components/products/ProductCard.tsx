@@ -1,50 +1,116 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Product } from '../../types/product';
+import { brandSpring } from '../../utils/motion';
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  // Lazy check for touch device during initialization
+  const [isTouchDevice] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+  });
+
+  // Motion values for smooth 3D tilt tracking
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 24, stiffness: 280, mass: 0.5 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), springConfig);
+  const shadowX = useSpring(useTransform(mouseX, [-0.5, 0.5], [6, -6]), springConfig);
+  const shadowScale = useSpring(useTransform(mouseY, [-0.5, 0.5], [0.96, 1.04]), springConfig);
+  const highlightX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-25, 25]), springConfig);
+  const highlightOpacity = useSpring(useTransform(mouseX, [-0.5, 0, 0.5], [0.15, 0.35, 0.15]), springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (shouldReduceMotion || isTouchDevice || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  const enable3D = !shouldReduceMotion && !isTouchDevice;
+
   return (
     <motion.article
-      whileHover={{ y: -6 }}
-      transition={{ type: 'spring', stiffness: 280, damping: 22 }}
-      className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-brand-forest/15 overflow-hidden flex flex-col h-full group relative"
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      whileHover={!shouldReduceMotion ? { y: -7 } : undefined}
+      transition={brandSpring}
+      className="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-brand-forest/15 overflow-hidden flex flex-col h-full group relative"
     >
       {/* =========================================================================
-          PHASE 4: 3D SACHET STAGE
-          Realistic studio lighting, contact base shadow, and multi-layered depth
+          PHASE D: 3D SACHET STAGE WITH CURSOR-RESPONSIVE FOIL LIGHTING
           ========================================================================= */}
       <Link
         to={`/product/${product.id}`}
-        className="block relative pt-[108%] overflow-hidden bg-gradient-to-b from-brand-ivory via-white to-brand-emerald/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald"
+        className="block relative pt-[105%] overflow-hidden bg-gradient-to-b from-brand-ivory via-white to-brand-emerald/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald select-none"
         aria-label={`View details for ${product.name}`}
+        style={{ perspective: enable3D ? 800 : undefined }}
       >
-        {/* Soft Studio Radial Spotlight */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-64 h-64 rounded-full bg-radial from-brand-gold/15 via-brand-emerald/[0.06] to-transparent blur-2xl group-hover:scale-110 transition-transform duration-700" />
+        {/* Ambient Radial Spotlight */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+          <div className="w-64 h-64 rounded-full bg-radial from-brand-gold/20 via-brand-emerald/[0.08] to-transparent blur-2xl group-hover:scale-115 transition-transform duration-700" />
         </div>
 
-        {/* Softbox Studio Foil Highlight Reflection (Angle) */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-white/60 pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+        {/* 3D Pouch Container */}
+        <motion.div
+          style={{
+            transformStyle: enable3D ? 'preserve-3d' : undefined,
+            rotateX: enable3D ? rotateX : 0,
+            rotateY: enable3D ? rotateY : 0,
+          }}
+          className="absolute inset-0 flex flex-col items-center justify-center p-6"
+        >
+          {/* Packaging Image Stage */}
+          <div className="relative w-full h-full flex items-center justify-center">
+            <img
+              src={product.image}
+              alt={`Authentic package of ${product.name} by RUCHI RICH`}
+              loading="lazy"
+              className="max-w-full max-h-full object-contain filter drop-shadow-[0_16px_22px_rgba(0,43,20,0.24)] drop-shadow-[0_4px_8px_rgba(0,0,0,0.12)] transform group-hover:scale-105 group-hover:-translate-y-1 transition-all duration-400 ease-out"
+            />
 
-        {/* Realistic Elliptical Ground Contact Shadow */}
-        <div
-          className="absolute bottom-5 left-1/2 -translate-x-1/2 w-44 sm:w-48 h-3.5 bg-gradient-to-r from-transparent via-black/40 to-transparent blur-[3px] rounded-full pointer-events-none transform group-hover:scale-95 group-hover:opacity-75 transition-all duration-500"
-          aria-hidden="true"
-        />
+            {/* Cursor-responsive Softbox Studio Foil Highlight Reflection */}
+            {!shouldReduceMotion && (
+              <motion.div
+                style={{
+                  x: enable3D ? highlightX : 0,
+                  opacity: enable3D ? highlightOpacity : 0.2,
+                }}
+                className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent pointer-events-none rounded-2xl mix-blend-overlay"
+                aria-hidden="true"
+              />
+            )}
+          </div>
 
-        {/* 3D Dimensional Pouch Image with Layered Shadows */}
-        <img
-          src={product.image}
-          alt={`Authentic package of ${product.name} by RUCHI RICH`}
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-contain p-6 transform group-hover:scale-104 group-hover:-translate-y-1.5 transition-all duration-500 ease-out filter drop-shadow-[0_16px_22px_rgba(0,43,20,0.24)] drop-shadow-[0_4px_8px_rgba(0,0,0,0.12)]"
-        />
+          {/* Physical Ground Contact Shadow underneath pouch base */}
+          <motion.div
+            style={{
+              x: enable3D ? shadowX : 0,
+              scaleX: enable3D ? shadowScale : 1,
+            }}
+            className="w-40 sm:w-44 h-3 -mt-2 bg-gradient-to-r from-transparent via-black/35 to-transparent blur-[3px] rounded-full pointer-events-none transform group-hover:scale-95 group-hover:opacity-75 transition-all duration-300"
+            aria-hidden="true"
+          />
+        </motion.div>
 
         {/* Badges (Top Left) */}
         <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 z-10">
@@ -65,8 +131,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </Link>
 
       {/* =========================================================================
-          PHASE 3: SIMPLIFIED HOMEPAGE CONTENT & TYPOGRAPHY
-          Focus on discovery: Name, Tagline/Aroma, Readable Description, 1 Primary CTA
+          DISCOVERY CONTENT & ELEVATED TYPOGRAPHY
           ========================================================================= */}
       <div className="p-6 flex flex-col flex-grow justify-between">
         <div>

@@ -4,6 +4,7 @@ import { ShoppingCart, Menu, X, MessageCircle, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCartStore } from '../../store/useCartStore';
 import { contactConfig } from '../../config/contact';
+import { brandSpring, staggerContainerVariants, staggerItemVariants } from '../../utils/motion';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,6 @@ const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
                     <motion.div
                       layoutId="activeNavIndicator"
                       className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand-emerald rounded-full"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      transition={brandSpring}
                     />
                   )}
                 </Link>
@@ -99,7 +99,7 @@ const Navbar: React.FC = () => {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:inline-flex items-center gap-2 px-4 py-2 bg-brand-emerald/10 text-brand-forest hover:bg-brand-emerald hover:text-white rounded-full text-sm font-bold transition-all duration-200 border border-brand-emerald/20"
+              className="hidden lg:inline-flex items-center gap-2 px-4 py-2 bg-brand-emerald/10 text-brand-forest hover:bg-brand-emerald hover:text-white rounded-full text-sm font-bold transition-all duration-200 border border-brand-emerald/20 hover:-translate-y-0.5 active:translate-y-0"
               aria-label="Direct WhatsApp Enquiry"
             >
               <MessageCircle className="w-4 h-4 text-[#25D366]" />
@@ -115,8 +115,10 @@ const Navbar: React.FC = () => {
               <ShoppingCart className="w-6 h-6" />
               {cartCount > 0 && (
                 <motion.span
-                  initial={{ scale: 0 }}
+                  key={cartCount}
+                  initial={{ scale: 0.6 }}
                   animate={{ scale: 1 }}
+                  transition={brandSpring}
                   className="absolute -top-1 -right-1 bg-brand-red text-white text-xs font-bold rounded-full h-5 min-w-5 px-1 flex items-center justify-center shadow-md"
                 >
                   {cartCount}
@@ -137,7 +139,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu with Staggered Entrance */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -147,20 +149,26 @@ const Navbar: React.FC = () => {
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             className="md:hidden bg-brand-ivory border-t border-brand-charcoal/10 overflow-hidden shadow-xl"
           >
-            <div className="px-5 pt-4 pb-6 space-y-3">
+            <motion.div
+              variants={staggerContainerVariants}
+              initial="hidden"
+              animate="visible"
+              className="px-5 pt-4 pb-6 space-y-3"
+            >
               {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
-                    isActive(link.path)
-                      ? 'bg-brand-emerald text-white font-semibold'
-                      : 'text-brand-charcoal hover:bg-brand-emerald/10 hover:text-brand-emerald'
-                  }`}
-                >
-                  {link.name}
-                </Link>
+                <motion.div key={link.name} variants={staggerItemVariants}>
+                  <Link
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                      isActive(link.path)
+                        ? 'bg-brand-emerald text-white font-semibold'
+                        : 'text-brand-charcoal hover:bg-brand-emerald/10 hover:text-brand-emerald'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
               ))}
 
               <div className="pt-4 border-t border-brand-charcoal/10 flex flex-col gap-2.5">
@@ -183,7 +191,7 @@ const Navbar: React.FC = () => {
                   <span>Call Customer Care: {contactConfig.customerCarePhone}</span>
                 </a>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

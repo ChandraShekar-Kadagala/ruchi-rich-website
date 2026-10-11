@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Trash2, Plus, Minus, ShoppingBag, ExternalLink, ArrowRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { X, Trash2, Plus, Minus, ShoppingBag, ExternalLink, ArrowRight, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCartStore } from '../../store/useCartStore';
 import { generateWhatsAppMessage, getWhatsAppLink } from '../../lib/whatsapp';
+import { brandSpring, staggerContainerVariants, staggerItemVariants } from '../../utils/motion';
 
 const CartDrawer: React.FC = () => {
   const { items, isDrawerOpen, closeDrawer, updateQuantity, removeItem, clearCart } = useCartStore();
+  const shouldReduceMotion = useReducedMotion();
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   // Close drawer on escape key
   useEffect(() => {
@@ -23,9 +26,14 @@ const CartDrawer: React.FC = () => {
 
   const handleWhatsAppRedirect = () => {
     if (items.length === 0) return;
+    setIsRedirecting(true);
     const message = generateWhatsAppMessage(items);
     const link = getWhatsAppLink(message);
-    window.open(link, '_blank');
+
+    setTimeout(() => {
+      window.open(link, '_blank');
+      setIsRedirecting(false);
+    }, 350);
   };
 
   return (
@@ -37,17 +45,17 @@ const CartDrawer: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.25 }}
             className="fixed inset-0 bg-black/60 backdrop-blur-sm"
             onClick={closeDrawer}
           />
 
           <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+              initial={!shouldReduceMotion ? { x: '100%' } : { opacity: 0 }}
+              animate={!shouldReduceMotion ? { x: 0 } : { opacity: 1 }}
+              exit={!shouldReduceMotion ? { x: '100%' } : { opacity: 0 }}
+              transition={brandSpring}
               className="w-screen max-w-md bg-white shadow-2xl flex flex-col"
             >
               {/* Header */}
@@ -65,7 +73,7 @@ const CartDrawer: React.FC = () => {
                 </div>
                 <button
                   onClick={closeDrawer}
-                  className="p-2 text-brand-ivory/80 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
+                  className="p-2 text-brand-ivory/80 hover:text-white rounded-lg hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
                   aria-label="Close cart"
                 >
                   <X className="w-5 h-5" />
@@ -75,7 +83,11 @@ const CartDrawer: React.FC = () => {
               {/* Items List */}
               <div className="flex-1 overflow-y-auto p-6 divide-y divide-brand-charcoal/10">
                 {items.length === 0 ? (
-                  <div className="h-full flex flex-col items-center justify-center text-center py-12">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="h-full flex flex-col items-center justify-center text-center py-12"
+                  >
                     <div className="w-20 h-20 rounded-full bg-brand-emerald/10 flex items-center justify-center mb-4 text-brand-emerald">
                       <ShoppingBag className="w-10 h-10" />
                     </div>
@@ -85,64 +97,77 @@ const CartDrawer: React.FC = () => {
                     </p>
                     <button
                       onClick={closeDrawer}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-brand-emerald text-white rounded-xl text-base font-semibold hover:bg-brand-forest transition-colors shadow-sm"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-brand-emerald text-white rounded-xl text-base font-semibold hover:bg-brand-forest transition-all shadow-sm hover:shadow-md active:scale-98"
                     >
                       Browse Catalogue <ArrowRight className="w-4 h-4" />
                     </button>
-                  </div>
+                  </motion.div>
                 ) : (
-                  <div className="space-y-4">
-                    {items.map((item) => (
-                      <div key={item.id} className="pt-4 first:pt-0 flex gap-4 items-center">
-                        <div className="w-16 h-20 bg-brand-charcoal/5 rounded-lg flex-shrink-0 flex items-center justify-center p-1.5 border border-brand-charcoal/10">
-                          <img
-                            src={item.product.image}
-                            alt={item.product.name}
-                            className="max-h-full max-w-full object-contain"
-                          />
-                        </div>
+                  <motion.div
+                    variants={staggerContainerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="space-y-4"
+                  >
+                    <AnimatePresence mode="popLayout">
+                      {items.map((item) => (
+                        <motion.div
+                          key={item.id}
+                          layout
+                          variants={staggerItemVariants}
+                          exit={{ opacity: 0, x: 25, transition: { duration: 0.25 } }}
+                          className="pt-4 first:pt-0 flex gap-4 items-center bg-white"
+                        >
+                          <div className="w-16 h-20 bg-brand-charcoal/5 rounded-lg flex-shrink-0 flex items-center justify-center p-1.5 border border-brand-charcoal/10">
+                            <img
+                              src={item.product.image}
+                              alt={item.product.name}
+                              className="max-h-full max-w-full object-contain filter drop-shadow-sm"
+                            />
+                          </div>
 
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-base font-bold text-brand-charcoal truncate font-serif">
-                            {item.product.name}
-                          </h4>
-                          <span className="inline-block mt-0.5 px-2.5 py-0.5 bg-brand-emerald/10 text-brand-emerald text-xs sm:text-sm font-semibold rounded">
-                            {item.selectedOption.label}
-                          </span>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-base font-bold text-brand-charcoal truncate font-serif">
+                              {item.product.name}
+                            </h4>
+                            <span className="inline-block mt-0.5 px-2.5 py-0.5 bg-brand-emerald/10 text-brand-emerald text-xs sm:text-sm font-semibold rounded">
+                              {item.selectedOption.label}
+                            </span>
 
-                          <div className="flex items-center gap-3 mt-2.5">
-                            <div className="inline-flex items-center border border-brand-charcoal/20 rounded-md bg-brand-ivory/50">
+                            <div className="flex items-center gap-3 mt-2.5">
+                              <div className="inline-flex items-center border border-brand-charcoal/20 rounded-md bg-brand-ivory/50">
+                                <button
+                                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                  className="p-1.5 hover:text-brand-emerald transition-colors active:scale-90"
+                                  aria-label="Decrease quantity"
+                                >
+                                  <Minus className="w-3.5 h-3.5" />
+                                </button>
+                                <span className="w-8 text-center text-sm font-bold text-brand-charcoal">
+                                  {item.quantity}
+                                </span>
+                                <button
+                                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                  className="p-1.5 hover:text-brand-emerald transition-colors active:scale-90"
+                                  aria-label="Increase quantity"
+                                >
+                                  <Plus className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+
                               <button
-                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="p-1.5 hover:text-brand-emerald transition-colors"
-                                aria-label="Decrease quantity"
+                                onClick={() => removeItem(item.id)}
+                                className="text-brand-charcoal/40 hover:text-brand-red p-1 transition-colors active:scale-90"
+                                aria-label="Remove item"
                               >
-                                <Minus className="w-3.5 h-3.5" />
-                              </button>
-                              <span className="w-8 text-center text-sm font-bold text-brand-charcoal">
-                                {item.quantity}
-                              </span>
-                              <button
-                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className="p-1.5 hover:text-brand-emerald transition-colors"
-                                aria-label="Increase quantity"
-                              >
-                                <Plus className="w-3.5 h-3.5" />
+                                <Trash2 className="w-4 h-4" />
                               </button>
                             </div>
-
-                            <button
-                              onClick={() => removeItem(item.id)}
-                              className="text-brand-charcoal/40 hover:text-brand-red p-1 transition-colors"
-                              aria-label="Remove item"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
                           </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
+                  </motion.div>
                 )}
               </div>
 
@@ -156,10 +181,20 @@ const CartDrawer: React.FC = () => {
 
                   <button
                     onClick={handleWhatsAppRedirect}
-                    className="w-full py-4 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl font-bold text-base flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all duration-200"
+                    disabled={isRedirecting}
+                    className="w-full py-4 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl font-bold text-base flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
                   >
-                    <span>Proceed to WhatsApp Order</span>
-                    <ExternalLink className="w-4 h-4" />
+                    {isRedirecting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>Opening WhatsApp...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Proceed to WhatsApp Order</span>
+                        <ExternalLink className="w-4 h-4" />
+                      </>
+                    )}
                   </button>
 
                   <div className="flex items-center justify-between pt-1">
