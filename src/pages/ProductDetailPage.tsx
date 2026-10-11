@@ -235,9 +235,11 @@ const ProductDetailPage: React.FC = () => {
                     {product.options.map((option) => {
                       const isSelected = selectedOptionId === option.id;
                       return (
-                        <button
+                        <motion.button
                           key={option.id}
                           type="button"
+                          whileTap={!shouldReduceMotion ? { scale: 0.97 } : undefined}
+                          whileHover={!shouldReduceMotion ? { y: -2 } : undefined}
                           onClick={() => setSelectedOptionId(option.id)}
                           className={`relative py-3.5 px-3 rounded-xl text-sm sm:text-base font-bold text-center transition-all flex flex-col items-center justify-center gap-1.5 border-2 ${
                             isSelected
@@ -254,7 +256,7 @@ const ProductDetailPage: React.FC = () => {
                           )}
                           <PackageCheck className={`w-4 h-4 relative z-10 ${isSelected ? 'text-brand-emerald' : 'text-brand-charcoal/40'}`} />
                           <span className="relative z-10">{option.label}</span>
-                        </button>
+                        </motion.button>
                       );
                     })}
                   </div>

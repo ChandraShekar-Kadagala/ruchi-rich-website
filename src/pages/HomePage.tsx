@@ -15,6 +15,7 @@ import {
   brandEase,
   staggerContainerVariants,
   staggerItemVariants,
+  goldDividerVariants,
 } from '../utils/motion';
 
 const HomePage: React.FC = () => {
@@ -35,60 +36,66 @@ const HomePage: React.FC = () => {
       <BrandIntro />
 
       {/* =========================================================================
-          PHASE C: CINEMATIC HERO SECTION WITH 3D SACHET & LAYERED PARALLAX
+          PHASE C: CINEMATIC HERO SECTION WITH 3-LAYER COMPOSITION
+          Layer A: Deep emerald background & subdued atmospheric backdrop
+          Layer B: Dominant foreground 3D product stage with illuminated pedestal
+          Layer C: Clear brand message, concise copy, and high-visibility CTAs
           ========================================================================= */}
-      <section className="relative min-h-[640px] lg:min-h-[760px] bg-brand-forest overflow-hidden flex items-center">
+      <section className="relative min-h-[680px] lg:min-h-[760px] bg-gradient-to-br from-[#051C10] via-[#0A331C] to-[#04150B] overflow-hidden flex items-center">
         {/* Subtle Ambient Golden Spice Specks */}
         <SpiceDustParticles />
 
-        {/* Ambient Radial Spotlight and Slow Breathing Glow in Background */}
+        {/* Ambient Radial Spotlight and Atmospheric Breathing Glow in Background */}
         <motion.div
           animate={
             !shouldReduceMotion
               ? {
-                  opacity: [0.65, 0.9, 0.65],
+                  opacity: [0.55, 0.85, 0.55],
                   scale: [0.98, 1.02, 0.98],
                 }
               : undefined
           }
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute inset-0 bg-radial from-brand-emerald/40 via-brand-forest to-brand-forest pointer-events-none -z-10"
+          className="absolute inset-0 bg-radial from-brand-emerald/30 via-brand-forest/60 to-transparent pointer-events-none -z-10"
           aria-hidden="true"
         />
 
-        {/* Studio Background Backdrop with Parallax Texture */}
-        <div className="absolute inset-0 z-0">
+        {/* LAYER A: Subdued studio spice backdrop (atmospheric texture with zero competing foreground package) */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <picture>
             <source srcSet="/assets/brand/hero-banner.jpg" type="image/jpeg" />
             <img
               src="/assets/brand/hero-banner.jpg"
-              alt="RUCHI RICH Studio Presentation"
-              className="w-full h-full object-cover object-right-bottom lg:object-right opacity-80 lg:opacity-90 transform scale-100 lg:scale-105 transition-transform duration-1000"
+              alt=""
+              aria-hidden="true"
+              className="w-full h-full object-cover object-right-bottom opacity-15 filter blur-[1px] mix-blend-luminosity"
             />
           </picture>
-          {/* Subtle gradient overlay to guarantee 100% headline legibility and contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-forest via-brand-forest/95 to-transparent lg:w-3/5" />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-forest via-brand-forest/80 to-transparent lg:hidden" />
+          {/* Deep dark emerald gradient scrims guaranteeing 100% text contrast and eliminating any competing focal points */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#051C10] via-[#051C10]/95 to-[#051C10]/60 lg:w-3/5" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#051C10] via-[#051C10]/90 to-transparent lg:hidden" />
+          {/* Soft directional studio gold highlight behind the right product zone */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-radial from-brand-gold/15 via-brand-emerald/10 to-transparent blur-3xl pointer-events-none" />
         </div>
 
-        {/* Hero Content Grid */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-16 sm:py-24 lg:py-32 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Content Column (7 cols) */}
-            <div className="lg:col-span-7 max-w-2xl">
+        {/* Hero Content Grid (Layer C Brand Message & Layer B Product Stage) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-12 sm:py-16 lg:py-24 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Content Column (7 cols): Layer C Brand Message */}
+            <div className="lg:col-span-7 max-w-2xl text-left">
               {/* Eyebrow Pill Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, ease: brandEase }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-emerald/50 border border-brand-gold/40 text-brand-gold text-xs sm:text-sm font-semibold tracking-wider uppercase mb-6 backdrop-blur-md shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-emerald/40 border border-brand-gold/40 text-brand-gold text-xs sm:text-sm font-semibold tracking-wider uppercase mb-5 backdrop-blur-md shadow-sm"
               >
-                <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" />
-                <span>Ramraj Oil Industries • Fresh & Active</span>
+                <Sparkles className="w-4 h-4 text-brand-gold animate-pulse flex-shrink-0" />
+                <span>RAMRAJ OIL INDUSTRIES • FRESH & ACTIVE</span>
               </motion.div>
 
               {/* Headline with Sequenced Line Reveals */}
-              <div className="overflow-hidden mb-6">
+              <div className="overflow-hidden mb-5">
                 <motion.h1
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -108,23 +115,34 @@ const HomePage: React.FC = () => {
                 </motion.h1>
               </div>
 
-              {/* Supporting Copy - 16px minimum with relaxed line-height */}
+              {/* Supporting Copy - Concise, verified, minimum 16px font */}
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.28, ease: brandEase }}
                 className="text-base sm:text-lg lg:text-xl text-brand-ivory/90 leading-relaxed font-light"
               >
-                Experience <strong className="text-white font-semibold">RUCHI RICH</strong>: meticulously ground pure and blended spices from Andhra Pradesh.
-                Engineered to preserve natural volatile oils, rich colors, and unforgettable kitchen fragrances.
+                Discover authentic Indian spices, carefully prepared to bring vibrant colour, rich aroma and flavour to everyday cooking.
               </motion.p>
+
+              {/* Mobile Product Visual (Shown between copy and CTAs on small viewports so mobile users experience the 3D stage) */}
+              <div className="my-6 lg:hidden flex justify-center">
+                <div className="w-full max-w-xs relative py-2">
+                  <ProductStage3D
+                    image={heroProduct.image}
+                    alt={`Authentic ${heroProduct.name} package by RUCHI RICH`}
+                    priority={true}
+                    imageClassName="max-h-[260px] w-auto"
+                  />
+                </div>
+              </div>
 
               {/* CTA Buttons with Refined Micro-Interactions */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.42, ease: brandEase }}
-                className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
+                className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
               >
                 <Link
                   to="/products"
@@ -136,7 +154,7 @@ const HomePage: React.FC = () => {
 
                 <a
                   href={`https://wa.me/${contactConfig.whatsappNumber}?text=${encodeURIComponent(
-                    'Hello RUCHI RICH Team, I would like to enquire about catalogue availability and bulk pricing.'
+                    'Hello RUCHI RICH Team, I would like to enquire about spice catalogue availability and ordering.'
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -152,34 +170,34 @@ const HomePage: React.FC = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.55, ease: brandEase }}
-                className="mt-10 pt-6 border-t border-brand-ivory/20 grid grid-cols-3 gap-4 text-brand-ivory/90"
+                className="mt-8 pt-6 border-t border-brand-ivory/20 grid grid-cols-3 gap-4 text-brand-ivory/90"
               >
                 <div>
-                  <span className="block font-bold text-brand-gold font-serif text-base sm:text-lg">9 Blends</span>
+                  <span className="block font-bold text-brand-gold font-serif text-base sm:text-lg">Nine Spice Blends</span>
                   <span className="text-xs sm:text-sm text-brand-ivory/75 font-light">Pure & Masalas</span>
                 </div>
                 <div>
-                  <span className="block font-bold text-brand-gold font-serif text-base sm:text-lg">Stone Milled</span>
-                  <span className="text-xs sm:text-sm text-brand-ivory/75 font-light">Active Oils Retained</span>
+                  <span className="block font-bold text-brand-gold font-serif text-base sm:text-lg">Authentic Product Range</span>
+                  <span className="text-xs sm:text-sm text-brand-ivory/75 font-light">Ramraj Oil Industries</span>
                 </div>
                 <div>
-                  <span className="block font-bold text-brand-gold font-serif text-base sm:text-lg">Direct WhatsApp</span>
-                  <span className="text-xs sm:text-sm text-brand-ivory/75 font-light">Seamless Quotations</span>
+                  <span className="block font-bold text-brand-gold font-serif text-base sm:text-lg">Direct WhatsApp Ordering</span>
+                  <span className="text-xs sm:text-sm text-brand-ivory/75 font-light">Instant Quotations</span>
                 </div>
               </motion.div>
             </div>
 
-            {/* Right Visual Column (5 cols) - Interactive 3D Pouch Presentation */}
+            {/* Right Visual Column (5 cols): Layer B Dominant Product Stage on Desktop */}
             <div className="lg:col-span-5 hidden lg:flex items-center justify-center relative">
               <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 25 }}
+                initial={{ opacity: 0, scale: 0.92, y: 25 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.85, delay: 0.25, ease: brandEase }}
-                className="w-full max-w-md relative"
+                className="w-full max-w-md relative flex flex-col items-center justify-center"
               >
                 {/* Golden Halo Ring behind hero pouch */}
                 <div
-                  className="absolute inset-0 m-auto w-72 h-72 rounded-full border border-brand-gold/25 animate-[spin_24s_linear_infinite] pointer-events-none"
+                  className="absolute inset-0 m-auto w-80 h-80 rounded-full border border-brand-gold/20 animate-[spin_32s_linear_infinite] pointer-events-none"
                   aria-hidden="true"
                 />
 
@@ -187,22 +205,22 @@ const HomePage: React.FC = () => {
                   image={heroProduct.image}
                   alt={`Authentic ${heroProduct.name} package by RUCHI RICH`}
                   priority={true}
-                  imageClassName="w-80 h-auto"
+                  imageClassName="max-h-[380px] w-auto"
                 />
 
-                {/* Floating Micro-Badge */}
+                {/* Floating Authentic Quality Seal Badge */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.7, duration: 0.5 }}
-                  className="absolute -bottom-2 -left-4 bg-brand-forest/95 backdrop-blur-md p-3.5 rounded-2xl border border-brand-gold/40 shadow-xl flex items-center gap-2.5 text-left"
+                  className="absolute -bottom-2 -left-4 bg-[#051C10]/95 backdrop-blur-md p-3.5 rounded-2xl border border-brand-gold/40 shadow-xl flex items-center gap-2.5 text-left"
                 >
                   <div className="p-2 rounded-xl bg-brand-gold/20 text-brand-gold">
                     <Flame className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="block text-xs font-bold text-brand-gold font-serif">100% Active Formula</span>
-                    <span className="block text-[11px] text-brand-ivory/80">Volatile Oils Preserved</span>
+                    <span className="block text-xs font-bold text-brand-gold font-serif">Fresh & Active Spices</span>
+                    <span className="block text-[11px] text-brand-ivory/80">Aroma & Essential Oils Preserved</span>
                   </div>
                 </motion.div>
               </motion.div>
@@ -323,72 +341,129 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* =========================================================================
-          BRAND STORY & HERITAGE SECTION - Viewport Scroll Reveal
+          PHASE G: EDITORIAL HERITAGE & MISSION SHOWCASE - Scroll Reveal
+          Left: Architectural framed studio photograph with layered floating product & gold rings
+          Right: Editorial headline, animated gold divider line, verified narrative, and dual CTAs
           ========================================================================= */}
-      <section className="py-20 sm:py-24 bg-brand-forest text-brand-ivory relative overflow-hidden">
-        {/* Subtle decorative circles */}
-        <div className="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-brand-emerald/20 blur-3xl pointer-events-none" />
+      <section className="py-20 sm:py-28 bg-gradient-to-b from-[#051C10] via-brand-forest to-[#04150B] text-brand-ivory relative overflow-hidden">
+        {/* Subtle decorative gold ambient glow */}
+        <div className="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-brand-gold/10 blur-3xl pointer-events-none" />
+        <div className="absolute -left-24 top-1/4 w-80 h-80 rounded-full bg-brand-emerald/15 blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Visual Column with Smooth Elevation */}
-            <Reveal direction="left">
-              <div className="relative">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-brand-gold/30 bg-brand-emerald/10 p-6 sm:p-8 flex items-center justify-center">
-                  <img
-                    src="/assets/brand/hero-banner.jpg"
-                    alt="Ramraj Oil Industries RUCHI RICH spices packaging presentation"
-                    className="w-full h-auto object-cover rounded-2xl shadow-lg"
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Visual Column (5 cols): Layered Editorial Composition */}
+            <div className="lg:col-span-5">
+              <Reveal direction="left">
+                <div className="relative group">
+                  {/* Decorative rotating gold geometric rings */}
+                  <div
+                    className="absolute -top-6 -left-6 w-36 h-36 rounded-full border border-brand-gold/20 pointer-events-none animate-[spin_40s_linear_infinite]"
+                    aria-hidden="true"
                   />
-                  <div className="absolute bottom-10 left-10 right-10 bg-brand-forest/95 backdrop-blur-md p-5 rounded-2xl border border-brand-gold/40 text-center shadow-lg">
-                    <span className="text-xs sm:text-sm text-brand-gold font-bold uppercase tracking-wider block font-serif">
-                      Ramraj Oil Industries
-                    </span>
-                    <span className="text-xs sm:text-sm text-brand-ivory/85 mt-1 block">
-                      ALEAP Industrial Estate, Surampalli, Andhra Pradesh
-                    </span>
+                  <div
+                    className="absolute -bottom-8 -right-8 w-48 h-48 rounded-full border border-brand-gold/15 pointer-events-none"
+                    aria-hidden="true"
+                  />
+
+                  {/* Main Architectural Studio Frame */}
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-brand-gold/30 bg-[#082817]/80 p-5 sm:p-7 backdrop-blur-md">
+                    {/* Background studio image with darkened overlay */}
+                    <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden mb-5">
+                      <img
+                        src="/assets/brand/hero-banner.jpg"
+                        alt="Ramraj Oil Industries Heritage Studio Presentation"
+                        className="w-full h-full object-cover opacity-40 filter blur-[0.5px] scale-105 group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#082817] via-[#082817]/60 to-transparent" />
+
+                      {/* Foreground floating spice visual with soft ambient halo */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative w-44 sm:w-48 aspect-square flex items-center justify-center">
+                          <div className="absolute inset-0 rounded-full bg-radial from-brand-gold/30 via-brand-emerald/20 to-transparent blur-xl" />
+                          <img
+                            src="/assets/products/garam-masala.png"
+                            alt="Authentic Garam Masala pouch by RUCHI RICH"
+                            className="max-h-full max-w-full object-contain filter drop-shadow-[0_16px_20px_rgba(0,0,0,0.5)] transform group-hover:-translate-y-1 group-hover:scale-105 transition-all duration-500"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Manufacturing & Company Identity Panel */}
+                    <div className="bg-[#051C10]/90 backdrop-blur-md p-4 rounded-xl border border-brand-gold/25 shadow-lg flex items-center gap-3.5">
+                      <div className="p-2.5 rounded-lg bg-brand-gold/15 text-brand-gold flex-shrink-0">
+                        <Award className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <span className="text-xs font-bold uppercase tracking-widest text-brand-gold font-serif block">
+                          Ramraj Oil Industries
+                        </span>
+                        <span className="text-xs text-brand-ivory/80 block mt-0.5 font-light">
+                          ALEAP Industrial Estate, Surampalli, Andhra Pradesh
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </div>
 
-            {/* Content Column with Staggered Narrative Copy */}
-            <Reveal direction="right" delay={0.15}>
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-gold/20 text-brand-gold text-xs sm:text-sm font-bold uppercase tracking-wider">
-                  Our Heritage & Mission
-                </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-ivory leading-snug">
-                  Preserving the Sacred Essence of Indian Kitchens
-                </h2>
-                <p className="text-base sm:text-lg text-brand-ivory/85 leading-relaxed font-light">
-                  At <strong className="text-white font-semibold">Ramraj Oil Industries</strong>, spices are more than cooking ingredients—they are the
-                  cornerstone of wellness, hospitality, and generational memory. Under our flagship brand,{' '}
-                  <strong className="text-brand-gold">RUCHI RICH</strong>, we bring an uncompromising dedication to purity.
-                </p>
-                <p className="text-base sm:text-lg text-brand-ivory/85 leading-relaxed font-light">
-                  Our spices are cleaned, processed, and ground using modern hygienic methods designed to prevent oil loss
-                  and overheating. The result is pure, vibrant, and genuinely active spice powders that transform everyday
-                  meals into feast-worthy experiences.
-                </p>
+            {/* Content Column (7 cols): Editorial Narrative */}
+            <div className="lg:col-span-7">
+              <Reveal direction="right" delay={0.12}>
+                <div className="space-y-6">
+                  {/* Eyebrow Label */}
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs sm:text-sm font-bold uppercase tracking-wider">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>OUR HERITAGE & MISSION</span>
+                  </div>
 
-                <div className="pt-4 flex flex-wrap gap-4">
-                  <Link
-                    to="/about"
-                    className="inline-flex items-center px-7 py-3.5 rounded-xl bg-brand-gold text-brand-forest font-bold text-base hover:bg-yellow-400 transition-colors shadow-md hover:-translate-y-0.5 active:translate-y-0"
-                  >
-                    <span>Learn More About Us</span>
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-base border border-white/20 transition-colors hover:-translate-y-0.5 active:translate-y-0"
-                  >
-                    <span>Locate Manufacturing Facility</span>
-                  </Link>
+                  {/* Editorial Headline */}
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-ivory leading-tight">
+                    Preserving the Essence of <br className="hidden sm:inline" />
+                    <span className="text-brand-gold">Indian Kitchens</span>
+                  </h2>
+
+                  {/* Animated Gold Divider Line */}
+                  <motion.div
+                    variants={goldDividerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    className="w-28 h-1 bg-gradient-to-r from-brand-gold via-brand-gold/80 to-transparent rounded-full origin-left"
+                  />
+
+                  {/* Narrative Body Copy - Verified, minimum 16px, high legibility */}
+                  <p className="text-base sm:text-lg text-brand-ivory/90 leading-relaxed font-light">
+                    At <strong className="text-white font-semibold">Ramraj Oil Industries</strong>, spices are more than cooking ingredients—they are the
+                    cornerstone of wellness, authentic hospitality, and generational culinary memory. Under our flagship brand,{' '}
+                    <strong className="text-brand-gold">RUCHI RICH</strong>, we uphold an uncompromising commitment to purity and traditional spice craftsmanship.
+                  </p>
+
+                  <p className="text-base sm:text-lg text-brand-ivory/90 leading-relaxed font-light">
+                    Carefully selected raw spices are cleaned, processed, and stone-ground under hygienic conditions engineered to retain natural volatile oils and aroma. Every blend delivers vibrant colour, invigorating pungency, and wholesome flavour directly to your home.
+                  </p>
+
+                  {/* Dual Action CTAs */}
+                  <div className="pt-2 flex flex-wrap gap-4">
+                    <Link
+                      to="/about"
+                      className="inline-flex items-center px-7 py-3.5 rounded-xl bg-brand-gold text-brand-forest font-bold text-base hover:bg-yellow-400 transition-colors shadow-md hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      <span>Learn More About Us</span>
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-base border border-white/20 transition-colors hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      <span>Locate Manufacturing Facility</span>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>

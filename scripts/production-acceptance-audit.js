@@ -78,7 +78,7 @@ const prohibitedPatterns = [
   /\bRs\.?\b/i,
   /\bINR\b/i,
   /\bMRP\b/i,
-  /\b\d+\s*(\/\-|\.00)\b/,
+  /\b\d+\s*(\/-|\.00)\b/,
   /\b\d+\s*(gm|gms|grams|kg|kgs|ml|ltr|liters|litres)\b/i,
   /\b100g\b/i,
   /\b50g\b/i,

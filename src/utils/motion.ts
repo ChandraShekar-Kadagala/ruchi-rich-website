@@ -116,3 +116,12 @@ export const defaultViewport = {
   margin: '-40px',
   amount: 0.15 as const,
 };
+
+export const goldDividerVariants: Variants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: {
+    scaleX: 1,
+    opacity: 1,
+    transition: { duration: 0.85, ease: brandEase, delay: 0.2 },
+  },
+};

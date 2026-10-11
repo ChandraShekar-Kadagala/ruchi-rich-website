@@ -52,23 +52,30 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      whileHover={!shouldReduceMotion ? { y: -7 } : undefined}
+      whileHover={!shouldReduceMotion ? { y: -6 } : undefined}
       transition={brandSpring}
-      className="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-brand-forest/15 overflow-hidden flex flex-col h-full group relative"
+      className="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-brand-forest/15 hover:border-brand-gold/40 overflow-hidden flex flex-col h-full group relative"
     >
       {/* =========================================================================
-          PHASE D: 3D SACHET STAGE WITH CURSOR-RESPONSIVE FOIL LIGHTING
+          PHASE D: 3D SACHET STAGE WITH CURSOR-RESPONSIVE FOIL LIGHTING & PEDESTAL
           ========================================================================= */}
       <Link
         to={`/product/${product.id}`}
         className="block relative pt-[105%] overflow-hidden bg-gradient-to-b from-brand-ivory via-white to-brand-emerald/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald select-none"
         aria-label={`View details for ${product.name}`}
-        style={{ perspective: enable3D ? 800 : undefined }}
+        style={{ perspective: enable3D ? 850 : undefined }}
       >
         {/* Ambient Radial Spotlight */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
-          <div className="w-64 h-64 rounded-full bg-radial from-brand-gold/20 via-brand-emerald/[0.08] to-transparent blur-2xl group-hover:scale-115 transition-transform duration-700" />
+          <div className="w-64 h-64 rounded-full bg-radial from-brand-gold/20 via-brand-emerald/[0.08] to-transparent blur-2xl group-hover:scale-120 transition-transform duration-700" />
         </div>
+
+        {/* Subtle Elliptical Ground Pedestal */}
+        <div
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 w-44 h-14 rounded-[100%] bg-gradient-to-b from-brand-gold/10 to-transparent border border-brand-gold/20 pointer-events-none group-hover:border-brand-gold/40 transition-colors"
+          style={{ transform: 'translateX(-50%) rotateX(68deg)' }}
+          aria-hidden="true"
+        />
 
         {/* 3D Pouch Container */}
         <motion.div
@@ -85,7 +92,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               src={product.image}
               alt={`Authentic package of ${product.name} by RUCHI RICH`}
               loading="lazy"
-              className="max-w-full max-h-full object-contain filter drop-shadow-[0_16px_22px_rgba(0,43,20,0.24)] drop-shadow-[0_4px_8px_rgba(0,0,0,0.12)] transform group-hover:scale-105 group-hover:-translate-y-1 transition-all duration-400 ease-out"
+              className="max-w-full max-h-full object-contain filter drop-shadow-[0_18px_24px_rgba(0,35,15,0.3)] drop-shadow-[0_4px_8px_rgba(0,0,0,0.12)] transform group-hover:scale-106 group-hover:-translate-y-1.5 transition-all duration-400 ease-out"
             />
 
             {/* Cursor-responsive Softbox Studio Foil Highlight Reflection */}
@@ -107,7 +114,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               x: enable3D ? shadowX : 0,
               scaleX: enable3D ? shadowScale : 1,
             }}
-            className="w-40 sm:w-44 h-3 -mt-2 bg-gradient-to-r from-transparent via-black/35 to-transparent blur-[3px] rounded-full pointer-events-none transform group-hover:scale-95 group-hover:opacity-75 transition-all duration-300"
+            className="w-36 sm:w-40 h-3 -mt-2 bg-gradient-to-r from-transparent via-black/40 to-transparent blur-[3px] rounded-full pointer-events-none transform group-hover:scale-95 group-hover:opacity-80 transition-all duration-300"
             aria-hidden="true"
           />
         </motion.div>
