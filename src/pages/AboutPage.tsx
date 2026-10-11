@@ -28,7 +28,7 @@ const AboutPage: React.FC = () => {
             <h2 className="text-2xl font-serif font-bold text-brand-forest mb-4">
               Our Vision & Identity
             </h2>
-            <p className="text-sm sm:text-base text-brand-charcoal/80 leading-relaxed font-light">
+            <p className="text-base sm:text-lg text-brand-charcoal/85 leading-relaxed font-normal">
               <strong>Ramraj Oil Industries</strong> is a trusted manufacturing enterprise committed to bringing pure,
               wholesome culinary essentials to kitchens across India. Under our flagship consumer spice brand,{' '}
               <strong className="text-brand-emerald">RUCHI RICH</strong>, we produce a comprehensive portfolio of pure spice
@@ -37,13 +37,13 @@ const AboutPage: React.FC = () => {
           </div>
 
           <div className="p-6 rounded-2xl bg-brand-ivory border-l-4 border-brand-gold space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-gold font-serif">
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-gold font-serif">
               The Brand Promise
             </span>
-            <h3 className="text-lg font-serif font-bold text-brand-charcoal">
+            <h3 className="text-xl font-serif font-bold text-brand-charcoal">
               Fresh & Active: Why It Matters
             </h3>
-            <p className="text-xs sm:text-sm text-brand-charcoal/80 leading-relaxed font-light">
+            <p className="text-base text-brand-charcoal/80 leading-relaxed font-normal">
               Spices lose their culinary vitality and medicinal properties when over-processed or exposed to high milling
               temperatures. Our "Fresh & Active" processing philosophy preserves the natural volatile essential oils that
               give Indian spices their therapeutic properties, radiant colors, and intoxicating aromas.
@@ -56,41 +56,41 @@ const AboutPage: React.FC = () => {
               Quality Pillars
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-brand-ivory/60 border border-brand-charcoal/10 flex items-start gap-3">
+              <div className="p-5 rounded-xl bg-brand-ivory/60 border border-brand-charcoal/10 flex items-start gap-3.5">
                 <CheckCircle2 className="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-xs font-bold text-brand-charcoal">100% Pure Raw Spices</h4>
-                  <p className="text-xs text-brand-charcoal/70 mt-0.5">
+                  <h4 className="text-base font-bold text-brand-charcoal">100% Pure Raw Spices</h4>
+                  <p className="text-sm text-brand-charcoal/75 mt-1 leading-relaxed">
                     Selected clean whole spices milled without artificial adulterants.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-brand-ivory/60 border border-brand-charcoal/10 flex items-start gap-3">
+              <div className="p-5 rounded-xl bg-brand-ivory/60 border border-brand-charcoal/10 flex items-start gap-3.5">
                 <CheckCircle2 className="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-xs font-bold text-brand-charcoal">Zero Artificial Colorants</h4>
-                  <p className="text-xs text-brand-charcoal/70 mt-0.5">
+                  <h4 className="text-base font-bold text-brand-charcoal">Zero Artificial Colorants</h4>
+                  <p className="text-sm text-brand-charcoal/75 mt-1 leading-relaxed">
                     Natural curcumin in turmeric and authentic natural color in chillies.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-brand-ivory/60 border border-brand-charcoal/10 flex items-start gap-3">
+              <div className="p-5 rounded-xl bg-brand-ivory/60 border border-brand-charcoal/10 flex items-start gap-3.5">
                 <CheckCircle2 className="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-xs font-bold text-brand-charcoal">Hygienic Modern Milling</h4>
-                  <p className="text-xs text-brand-charcoal/70 mt-0.5">
+                  <h4 className="text-base font-bold text-brand-charcoal">Hygienic Modern Milling</h4>
+                  <p className="text-sm text-brand-charcoal/75 mt-1 leading-relaxed">
                     Processed under strict sanitation in our industrial facility.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-brand-ivory/60 border border-brand-charcoal/10 flex items-start gap-3">
+              <div className="p-5 rounded-xl bg-brand-ivory/60 border border-brand-charcoal/10 flex items-start gap-3.5">
                 <CheckCircle2 className="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-xs font-bold text-brand-charcoal">Direct Trade WhatsApp Access</h4>
-                  <p className="text-xs text-brand-charcoal/70 mt-0.5">
+                  <h4 className="text-base font-bold text-brand-charcoal">Direct Trade WhatsApp Access</h4>
+                  <p className="text-sm text-brand-charcoal/75 mt-1 leading-relaxed">
                     Direct communication with our production and sales dispatch desk.
                   </p>
                 </div>
@@ -104,16 +104,16 @@ const AboutPage: React.FC = () => {
               <Factory className="w-6 h-6 text-brand-gold" />
               <span>Manufacturing & Facilities</span>
             </h2>
-            <p className="text-xs sm:text-sm text-brand-charcoal/80 leading-relaxed font-light mb-4">
+            <p className="text-base text-brand-charcoal/80 leading-relaxed font-normal mb-4">
               Our operations are based in Andhra Pradesh at the ALEAP Industrial Estate, surrounded by renowned spice growing
               regions:
             </p>
 
-            <div className="p-5 rounded-2xl bg-brand-forest text-brand-ivory">
-              <div className="text-xs font-bold uppercase tracking-wider text-brand-gold mb-1">
+            <div className="p-6 rounded-2xl bg-brand-forest text-brand-ivory">
+              <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-gold mb-1.5 font-serif">
                 Verified Industrial Address
               </div>
-              <p className="text-sm font-medium leading-relaxed">
+              <p className="text-base font-medium leading-relaxed">
                 {contactConfig.address}
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
@@ -121,13 +121,13 @@ const AboutPage: React.FC = () => {
                   href={contactConfig.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-brand-gold text-brand-forest font-bold text-xs rounded-lg hover:bg-yellow-400 transition-colors"
+                  className="px-5 py-2.5 bg-brand-gold text-brand-forest font-bold text-sm rounded-xl hover:bg-yellow-400 transition-colors shadow-sm"
                 >
                   View on Google Maps
                 </a>
                 <Link
                   to="/contact"
-                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-lg transition-colors"
+                  className="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-sm rounded-xl transition-colors border border-white/20"
                 >
                   Contact Page
                 </Link>
@@ -140,10 +140,10 @@ const AboutPage: React.FC = () => {
         <div className="mt-12 text-center">
           <Link
             to="/products"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-brand-emerald hover:bg-brand-forest text-white rounded-xl font-bold text-sm shadow-md transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-brand-emerald hover:bg-brand-forest text-white rounded-xl font-bold text-base shadow-md hover:shadow-lg transition-colors"
           >
             <span>Explore All 9 RUCHI RICH Spices</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </div>

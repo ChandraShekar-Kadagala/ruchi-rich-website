@@ -31,16 +31,16 @@ const CartPage: React.FC = () => {
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-brand-charcoal mb-3">
           Your Spice Basket is Empty
         </h1>
-        <p className="text-sm text-brand-charcoal/70 mb-8 max-w-md leading-relaxed">
+        <p className="text-base text-brand-charcoal/75 mb-8 max-w-md leading-relaxed font-normal">
           Looks like you haven't added any spices to your selection yet. Explore our authentic range of pure and blended
           spices from Andhra Pradesh.
         </p>
         <Link
           to="/products"
-          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold text-white bg-brand-emerald hover:bg-brand-forest transition-colors shadow-lg hover:shadow-xl"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-white bg-brand-emerald hover:bg-brand-forest transition-colors shadow-lg hover:shadow-xl"
         >
           <span>Explore Spice Catalogue</span>
-          <ArrowRight className="w-4 h-4" />
+          <ArrowRight className="w-5 h-5" />
         </Link>
       </div>
     );
@@ -52,15 +52,15 @@ const CartPage: React.FC = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-brand-charcoal/10 gap-4">
           <div>
-            <div className="text-xs uppercase tracking-widest text-brand-emerald font-bold font-serif mb-1">
+            <div className="text-xs sm:text-sm uppercase tracking-widest text-brand-emerald font-bold font-serif mb-1">
               Order Inquiry
             </div>
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-brand-charcoal">
               Selected Spice Basket
             </h1>
           </div>
-          <div className="text-xs text-brand-charcoal/70">
-            Total Selected: <strong className="text-brand-emerald text-sm">{totalItems} Packs</strong>
+          <div className="text-sm sm:text-base text-brand-charcoal/70">
+            Total Selected: <strong className="text-brand-emerald text-base font-bold">{totalItems} Packs</strong>
           </div>
         </div>
 
@@ -85,16 +85,16 @@ const CartPage: React.FC = () => {
                 <div className="flex-1 text-center sm:text-left min-w-0">
                   <Link
                     to={`/product/${item.product.id}`}
-                    className="text-base sm:text-lg font-serif font-bold text-brand-charcoal hover:text-brand-emerald transition-colors"
+                    className="text-lg font-serif font-bold text-brand-charcoal hover:text-brand-emerald transition-colors"
                   >
                     {item.product.name}
                   </Link>
-                  <div className="mt-1 flex items-center justify-center sm:justify-start gap-2">
-                    <span className="px-2.5 py-0.5 rounded-md bg-brand-emerald/10 text-brand-emerald text-xs font-semibold">
+                  <div className="mt-1.5 flex items-center justify-center sm:justify-start gap-2">
+                    <span className="px-2.5 py-0.5 rounded-md bg-brand-emerald/10 text-brand-emerald text-xs sm:text-sm font-semibold">
                       {item.selectedOption.label}
                     </span>
                     <span className="text-xs text-brand-charcoal/50">•</span>
-                    <span className="text-xs text-brand-charcoal/60">{item.product.category}</span>
+                    <span className="text-xs sm:text-sm text-brand-charcoal/70">{item.product.category}</span>
                   </div>
                 </div>
 
@@ -108,7 +108,7 @@ const CartPage: React.FC = () => {
                     >
                       <Minus className="w-3.5 h-3.5" />
                     </button>
-                    <span className="w-10 text-center text-xs font-bold text-brand-charcoal">
+                    <span className="w-10 text-center text-sm font-bold text-brand-charcoal">
                       {item.quantity}
                     </span>
                     <button
@@ -136,12 +136,12 @@ const CartPage: React.FC = () => {
           <div className="bg-brand-ivory/80 p-5 sm:p-6 border-t border-brand-charcoal/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <button
               onClick={clearCart}
-              className="text-xs font-semibold text-brand-charcoal/60 hover:text-brand-red transition-colors"
+              className="text-xs sm:text-sm font-semibold text-brand-charcoal/70 hover:text-brand-red transition-colors"
             >
               Clear entire basket
             </button>
-            <div className="text-sm text-brand-charcoal">
-              Selected Item Summary: <span className="font-bold font-serif text-brand-emerald text-base">{totalItems} Total Packs</span>
+            <div className="text-sm sm:text-base text-brand-charcoal">
+              Selected Item Summary: <span className="font-bold font-serif text-brand-emerald text-base sm:text-lg">{totalItems} Total Packs</span>
             </div>
           </div>
         </div>
@@ -153,10 +153,10 @@ const CartPage: React.FC = () => {
               <MessageCircle className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="text-lg font-serif font-bold text-brand-charcoal">
+              <h2 className="text-xl font-serif font-bold text-brand-charcoal">
                 Direct WhatsApp Order Submission
               </h2>
-              <p className="text-xs sm:text-sm text-brand-charcoal/70 mt-1 leading-relaxed">
+              <p className="text-sm sm:text-base text-brand-charcoal/75 mt-1 leading-relaxed">
                 Clicking the button below generates an organized order message and opens your WhatsApp directly connected to our sales desk.
                 Our representatives will provide immediate quotation, stock confirmation, and delivery schedules.
               </p>
@@ -166,22 +166,22 @@ const CartPage: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
               to="/products"
-              className="sm:w-1/3 py-3.5 px-6 rounded-xl border-2 border-brand-emerald/40 text-brand-emerald font-bold text-xs text-center hover:bg-brand-emerald/5 transition-colors"
+              className="sm:w-1/3 py-4 px-6 rounded-xl border-2 border-brand-emerald/40 text-brand-emerald font-bold text-sm sm:text-base text-center hover:bg-brand-emerald/5 transition-colors"
             >
               Add More Spices
             </Link>
 
             <button
               onClick={handleWhatsAppRedirect}
-              className="sm:w-2/3 py-3.5 px-6 rounded-xl font-bold text-sm bg-[#25D366] hover:bg-[#20ba59] text-white shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2"
+              className="sm:w-2/3 py-4 px-6 rounded-xl font-bold text-base bg-[#25D366] hover:bg-[#20ba59] text-white shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2"
             >
               <span>Proceed to WhatsApp (+{contactConfig.whatsappNumber})</span>
               <ExternalLink className="w-4 h-4" />
             </button>
           </div>
 
-          <div className="pt-2 flex items-center justify-center gap-2 text-[11px] text-brand-charcoal/50">
-            <ShieldCheck className="w-3.5 h-3.5 text-brand-emerald" />
+          <div className="pt-2 flex items-center justify-center gap-2 text-xs text-brand-charcoal/60">
+            <ShieldCheck className="w-4 h-4 text-brand-emerald" />
             <span>Official WhatsApp Channel of Ramraj Oil Industries — RUCHI RICH</span>
           </div>
         </div>

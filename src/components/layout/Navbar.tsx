@@ -57,13 +57,13 @@ const Navbar: React.FC = () => {
               <span className="text-xs uppercase tracking-widest text-brand-emerald font-bold font-serif">
                 Ramraj Oil Industries
               </span>
-              <span className="text-[11px] text-brand-charcoal/60 tracking-wider">
+              <span className="text-xs text-brand-charcoal/70 tracking-wider">
                 Fresh & Active Spices
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links - 15-16px target */}
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2" aria-label="Main Navigation">
             {navLinks.map((link) => {
               const active = isActive(link.path);
@@ -71,10 +71,10 @@ const Navbar: React.FC = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-full ${
+                  className={`relative px-4 py-2 text-[15px] lg:text-base font-medium transition-colors rounded-full ${
                     active
-                      ? 'text-brand-emerald font-semibold'
-                      : 'text-brand-charcoal/80 hover:text-brand-emerald hover:bg-brand-emerald/5'
+                      ? 'text-brand-emerald font-bold'
+                      : 'text-brand-charcoal/85 hover:text-brand-emerald hover:bg-brand-emerald/5'
                   }`}
                 >
                   {link.name}
@@ -99,7 +99,7 @@ const Navbar: React.FC = () => {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:inline-flex items-center gap-2 px-4 py-2 bg-brand-emerald/10 text-brand-forest hover:bg-brand-emerald hover:text-white rounded-full text-xs font-bold transition-all duration-200 border border-brand-emerald/20"
+              className="hidden lg:inline-flex items-center gap-2 px-4 py-2 bg-brand-emerald/10 text-brand-forest hover:bg-brand-emerald hover:text-white rounded-full text-sm font-bold transition-all duration-200 border border-brand-emerald/20"
               aria-label="Direct WhatsApp Enquiry"
             >
               <MessageCircle className="w-4 h-4 text-[#25D366]" />
@@ -163,23 +163,23 @@ const Navbar: React.FC = () => {
                 </Link>
               ))}
 
-              <div className="pt-4 border-t border-brand-charcoal/10 flex flex-col gap-2">
+              <div className="pt-4 border-t border-brand-charcoal/10 flex flex-col gap-2.5">
                 <a
                   href={`https://wa.me/${contactConfig.whatsappNumber}?text=${encodeURIComponent(
                     'Hello RUCHI RICH Team, I would like to inquire about your spice range.'
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#25D366] text-white rounded-xl font-bold text-sm shadow-md"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-[#25D366] text-white rounded-xl font-bold text-base shadow-md"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <MessageCircle className="w-5 h-5" />
                   <span>Direct WhatsApp Enquiry</span>
                 </a>
                 <a
                   href={`tel:${contactConfig.customerCarePhone}`}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-brand-charcoal/5 text-brand-charcoal rounded-xl font-semibold text-xs"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-brand-charcoal/5 text-brand-charcoal rounded-xl font-semibold text-sm"
                 >
-                  <Phone className="w-3.5 h-3.5" />
+                  <Phone className="w-4 h-4" />
                   <span>Call Customer Care: {contactConfig.customerCarePhone}</span>
                 </a>
               </div>

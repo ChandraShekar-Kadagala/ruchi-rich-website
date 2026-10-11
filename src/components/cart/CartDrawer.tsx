@@ -80,12 +80,12 @@ const CartDrawer: React.FC = () => {
                       <ShoppingBag className="w-10 h-10" />
                     </div>
                     <h3 className="text-lg font-serif font-bold text-brand-charcoal mb-2">Your basket is empty</h3>
-                    <p className="text-sm text-brand-charcoal/60 mb-6 max-w-xs">
+                    <p className="text-base text-brand-charcoal/70 mb-6 max-w-xs leading-relaxed font-normal">
                       Discover our authentic stone-ground spices and add your favorite blends.
                     </p>
                     <button
                       onClick={closeDrawer}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-emerald text-white rounded-lg text-sm font-semibold hover:bg-brand-forest transition-colors shadow-sm"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-brand-emerald text-white rounded-xl text-base font-semibold hover:bg-brand-forest transition-colors shadow-sm"
                     >
                       Browse Catalogue <ArrowRight className="w-4 h-4" />
                     </button>
@@ -103,10 +103,10 @@ const CartDrawer: React.FC = () => {
                         </div>
 
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-sm font-bold text-brand-charcoal truncate font-serif">
+                          <h4 className="text-base font-bold text-brand-charcoal truncate font-serif">
                             {item.product.name}
                           </h4>
-                          <span className="inline-block mt-0.5 px-2 py-0.5 bg-brand-emerald/10 text-brand-emerald text-xs font-semibold rounded">
+                          <span className="inline-block mt-0.5 px-2.5 py-0.5 bg-brand-emerald/10 text-brand-emerald text-xs sm:text-sm font-semibold rounded">
                             {item.selectedOption.label}
                           </span>
 
@@ -114,17 +114,17 @@ const CartDrawer: React.FC = () => {
                             <div className="inline-flex items-center border border-brand-charcoal/20 rounded-md bg-brand-ivory/50">
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="p-1 hover:text-brand-emerald transition-colors"
+                                className="p-1.5 hover:text-brand-emerald transition-colors"
                                 aria-label="Decrease quantity"
                               >
                                 <Minus className="w-3.5 h-3.5" />
                               </button>
-                              <span className="w-8 text-center text-xs font-bold text-brand-charcoal">
+                              <span className="w-8 text-center text-sm font-bold text-brand-charcoal">
                                 {item.quantity}
                               </span>
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className="p-1 hover:text-brand-emerald transition-colors"
+                                className="p-1.5 hover:text-brand-emerald transition-colors"
                                 aria-label="Increase quantity"
                               >
                                 <Plus className="w-3.5 h-3.5" />
@@ -149,14 +149,14 @@ const CartDrawer: React.FC = () => {
               {/* Footer */}
               {items.length > 0 && (
                 <div className="p-6 bg-brand-ivory border-t border-brand-charcoal/10 space-y-4">
-                  <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center justify-between text-base">
                     <span className="text-brand-charcoal/70">Total Selected Products</span>
-                    <span className="font-bold text-brand-charcoal font-serif">{totalItems} Packs</span>
+                    <span className="font-bold text-brand-charcoal font-serif text-lg">{totalItems} Packs</span>
                   </div>
 
                   <button
                     onClick={handleWhatsAppRedirect}
-                    className="w-full py-3.5 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all duration-200"
+                    className="w-full py-4 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl font-bold text-base flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all duration-200"
                   >
                     <span>Proceed to WhatsApp Order</span>
                     <ExternalLink className="w-4 h-4" />
@@ -166,19 +166,19 @@ const CartDrawer: React.FC = () => {
                     <Link
                       to="/cart"
                       onClick={closeDrawer}
-                      className="text-xs text-brand-emerald hover:underline font-semibold"
+                      className="text-sm text-brand-emerald hover:underline font-semibold"
                     >
                       View Full Cart Page
                     </Link>
                     <button
                       onClick={clearCart}
-                      className="text-xs text-brand-charcoal/50 hover:text-brand-red transition-colors"
+                      className="text-sm text-brand-charcoal/60 hover:text-brand-red transition-colors"
                     >
                       Clear All
                     </button>
                   </div>
 
-                  <p className="text-[11px] text-center text-brand-charcoal/60 leading-tight">
+                  <p className="text-xs text-center text-brand-charcoal/70 leading-relaxed">
                     WhatsApp will open with your pre-filled inquiry. Our sales team will confirm availability & pricing.
                   </p>
                 </div>

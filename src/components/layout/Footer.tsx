@@ -13,42 +13,42 @@ const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center sm:text-left">
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-brand-emerald/30 flex items-center justify-center text-brand-gold">
+              <div className="w-11 h-11 rounded-full bg-brand-emerald/30 flex items-center justify-center text-brand-gold flex-shrink-0">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-brand-ivory">100% Pure Ingredients</h4>
-                <p className="text-xs text-brand-ivory/70">No artificial colors or fillers</p>
+                <h4 className="text-sm sm:text-base font-bold text-brand-ivory">100% Pure Ingredients</h4>
+                <p className="text-xs sm:text-sm text-brand-ivory/80 font-light">No artificial colors or fillers</p>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-brand-emerald/30 flex items-center justify-center text-brand-gold">
+              <div className="w-11 h-11 rounded-full bg-brand-emerald/30 flex items-center justify-center text-brand-gold flex-shrink-0">
                 <span className="font-serif font-black text-sm">F&A</span>
               </div>
               <div>
-                <h4 className="text-sm font-bold text-brand-ivory">Fresh & Active Formula</h4>
-                <p className="text-xs text-brand-ivory/70">Retains natural volatile oils</p>
+                <h4 className="text-sm sm:text-base font-bold text-brand-ivory">Fresh & Active Formula</h4>
+                <p className="text-xs sm:text-sm text-brand-ivory/80 font-light">Retains natural volatile oils</p>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-brand-emerald/30 flex items-center justify-center text-brand-gold">
+              <div className="w-11 h-11 rounded-full bg-brand-emerald/30 flex items-center justify-center text-brand-gold flex-shrink-0">
                 <MessageCircle className="w-5 h-5 text-[#25D366]" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-brand-ivory">WhatsApp Ordering</h4>
-                <p className="text-xs text-brand-ivory/70">Fast quotes & direct delivery</p>
+                <h4 className="text-sm sm:text-base font-bold text-brand-ivory">WhatsApp Ordering</h4>
+                <p className="text-xs sm:text-sm text-brand-ivory/80 font-light">Fast quotes & direct delivery</p>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-brand-emerald/30 flex items-center justify-center text-brand-gold">
+              <div className="w-11 h-11 rounded-full bg-brand-emerald/30 flex items-center justify-center text-brand-gold flex-shrink-0">
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-brand-ivory">ALEAP Industrial Estate</h4>
-                <p className="text-xs text-brand-ivory/70">Surampalli, Andhra Pradesh</p>
+                <h4 className="text-sm sm:text-base font-bold text-brand-ivory">ALEAP Industrial Estate</h4>
+                <p className="text-xs sm:text-sm text-brand-ivory/80 font-light">Surampalli, Andhra Pradesh</p>
               </div>
             </div>
           </div>
@@ -67,21 +67,21 @@ const Footer: React.FC = () => {
                 className="h-14 w-auto object-contain"
               />
             </div>
-            <p className="text-xs text-brand-gold font-bold uppercase tracking-wider font-serif">
+            <p className="text-xs sm:text-sm text-brand-gold font-bold uppercase tracking-wider font-serif">
               Fresh & Active Spices
             </p>
-            <p className="text-xs text-brand-ivory/80 leading-relaxed">
+            <p className="text-sm sm:text-base text-brand-ivory/85 leading-relaxed font-light">
               A flagship consumer spice brand of <strong className="text-white">Ramraj Oil Industries</strong>.
               Crafting premium pure spice powders and aromatic blended masalas that define the heart of authentic Indian cooking.
             </p>
           </div>
 
-          {/* Quick Navigation */}
+          {/* Quick Navigation - 15-16px target */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-brand-gold mb-4 border-b border-brand-emerald/50 pb-2">
+            <h3 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-gold mb-4 border-b border-brand-emerald/50 pb-2 font-serif">
               Explore Catalogue
             </h3>
-            <ul className="space-y-2.5 text-xs text-brand-ivory/80">
+            <ul className="space-y-3 text-sm sm:text-[15px] text-brand-ivory/85 font-medium">
               <li>
                 <Link to="/" className="hover:text-brand-gold transition-colors">
                   Home Overview
@@ -110,12 +110,12 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Products Direct Links */}
+          {/* Products Direct Links - 15-16px target */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-brand-gold mb-4 border-b border-brand-emerald/50 pb-2">
+            <h3 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-gold mb-4 border-b border-brand-emerald/50 pb-2 font-serif">
               Signature Blends
             </h3>
-            <ul className="space-y-2.5 text-xs text-brand-ivory/80">
+            <ul className="space-y-3 text-sm sm:text-[15px] text-brand-ivory/85 font-medium">
               <li>
                 <Link to="/product/turmeric-powder" className="hover:text-brand-gold transition-colors">
                   Turmeric Powder
@@ -146,13 +146,13 @@ const Footer: React.FC = () => {
 
           {/* Contact Details */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-brand-gold mb-4 border-b border-brand-emerald/50 pb-2">
+            <h3 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-gold mb-4 border-b border-brand-emerald/50 pb-2 font-serif">
               Manufacturing & Enquiries
             </h3>
-            <div className="space-y-3 text-xs text-brand-ivory/80">
+            <div className="space-y-3.5 text-sm sm:text-[15px] text-brand-ivory/85 font-medium">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" />
-                <address className="not-italic leading-relaxed">
+                <MapPin className="w-4 h-4 text-brand-gold flex-shrink-0 mt-1" />
+                <address className="not-italic leading-relaxed text-sm">
                   {contactConfig.address}
                 </address>
               </div>
@@ -194,9 +194,9 @@ const Footer: React.FC = () => {
                   href={contactConfig.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-emerald/40 hover:bg-brand-emerald text-brand-gold hover:text-white rounded-lg text-[11px] font-semibold transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-brand-emerald/40 hover:bg-brand-emerald text-brand-gold hover:text-white rounded-lg text-xs font-bold transition-colors"
                 >
-                  <MapPin className="w-3 h-3" />
+                  <MapPin className="w-3.5 h-3.5" />
                   <span>Open in Google Maps</span>
                 </a>
               </div>
@@ -205,11 +205,11 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Copyright & Disclaimer */}
-        <div className="mt-12 pt-6 border-t border-brand-emerald/40 flex flex-col md:flex-row items-center justify-between text-xs text-brand-ivory/60 gap-4">
+        <div className="mt-12 pt-6 border-t border-brand-emerald/40 flex flex-col md:flex-row items-center justify-between text-xs sm:text-sm text-brand-ivory/70 gap-4">
           <p>© {currentYear} Ramraj Oil Industries — RUCHI RICH. All rights reserved.</p>
-          <div className="flex items-center gap-2 text-[11px]">
+          <div className="flex items-center gap-2 text-xs">
             <span>Crafted with</span>
-            <Heart className="w-3 h-3 text-brand-red fill-brand-red" />
+            <Heart className="w-3.5 h-3.5 text-brand-red fill-brand-red" />
             <span>for authentic Indian culinary traditions</span>
           </div>
         </div>

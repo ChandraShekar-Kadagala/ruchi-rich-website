@@ -38,7 +38,7 @@ const ProductsPage: React.FC = () => {
             Pure & Blended Spices
           </h1>
           <div className="mt-3 w-20 h-1 bg-brand-gold mx-auto rounded-full" />
-          <p className="mt-4 text-sm sm:text-base text-brand-charcoal/70 leading-relaxed font-light">
+          <p className="mt-4 text-base sm:text-lg text-brand-charcoal/75 leading-relaxed font-normal">
             Every pouch is filled with the true essence of Indian heritage. Select your desired package variant and
             order conveniently via direct WhatsApp handoff.
           </p>
@@ -49,7 +49,7 @@ const ProductsPage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             {/* Category Pills */}
             <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
-              <span className="text-xs font-bold text-brand-charcoal/50 uppercase tracking-wider hidden sm:flex items-center gap-1 mr-1">
+              <span className="text-xs sm:text-sm font-bold text-brand-charcoal/60 uppercase tracking-wider hidden sm:flex items-center gap-1 mr-1">
                 <SlidersHorizontal className="w-3.5 h-3.5" />
                 <span>Filter:</span>
               </span>
@@ -60,7 +60,7 @@ const ProductsPage: React.FC = () => {
                   <button
                     key={category}
                     onClick={() => setActiveCategory(category)}
-                    className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
+                    className={`relative px-4 py-2.5 rounded-xl text-sm sm:text-base font-semibold whitespace-nowrap transition-all duration-200 ${
                       isActive
                         ? 'text-white shadow-sm'
                         : 'text-brand-charcoal/80 bg-brand-ivory hover:bg-brand-emerald/10 hover:text-brand-emerald border border-brand-charcoal/10'
@@ -81,13 +81,13 @@ const ProductsPage: React.FC = () => {
 
             {/* Search Input */}
             <div className="relative w-full md:w-80">
-              <Search className="absolute left-3.5 top-3 w-4 h-4 text-brand-charcoal/40" />
+              <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-brand-charcoal/40" />
               <input
                 type="text"
                 placeholder="Search spices, uses, notes..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-brand-charcoal/20 bg-brand-ivory text-sm focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-all placeholder:text-brand-charcoal/40"
+                className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-brand-charcoal/20 bg-brand-ivory text-base focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-all placeholder:text-brand-charcoal/45"
               />
               {searchQuery && (
                 <button
@@ -102,10 +102,10 @@ const ProductsPage: React.FC = () => {
           </div>
 
           {/* Results Count & Quick Reset */}
-          <div className="mt-3 pt-3 border-t border-brand-charcoal/5 flex items-center justify-between text-xs text-brand-charcoal/60">
+          <div className="mt-3 pt-3 border-t border-brand-charcoal/5 flex items-center justify-between text-xs sm:text-sm text-brand-charcoal/70">
             <span>
-              Showing <strong className="text-brand-charcoal">{filteredProducts.length}</strong> of{' '}
-              <strong className="text-brand-charcoal">{products.length}</strong> products
+              Showing <strong className="text-brand-charcoal font-semibold">{filteredProducts.length}</strong> of{' '}
+              <strong className="text-brand-charcoal font-semibold">{products.length}</strong> products
             </span>
 
             {(activeCategory !== 'All' || searchQuery) && (
@@ -152,7 +152,7 @@ const ProductsPage: React.FC = () => {
                 <Search className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-serif font-bold text-brand-charcoal mb-2">No matching spices found</h3>
-              <p className="text-xs sm:text-sm text-brand-charcoal/60 mb-6">
+              <p className="text-sm sm:text-base text-brand-charcoal/70 mb-6 leading-relaxed">
                 We couldn't find any spice matching "{searchQuery}". Try searching for another name or reset filters.
               </p>
               <button
@@ -160,7 +160,7 @@ const ProductsPage: React.FC = () => {
                   setActiveCategory('All');
                   setSearchQuery('');
                 }}
-                className="px-6 py-2.5 bg-brand-emerald text-white text-xs font-bold rounded-xl hover:bg-brand-forest transition-colors shadow-sm"
+                className="px-6 py-3 bg-brand-emerald text-white text-base font-bold rounded-xl hover:bg-brand-forest transition-colors shadow-sm"
               >
                 Show All Products
               </button>
