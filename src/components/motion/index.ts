@@ -4,3 +4,4 @@ export * from './BrandIntro';
 export * from './SpiceDustParticles';
 export * from './ProductConstellationHero';
 export * from './ProductSpiceBurst';
+export * from './FloatingSpiceBotanicals';

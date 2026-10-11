@@ -10,9 +10,11 @@ import {
   SpiceDustParticles,
   ProductConstellationHero,
   Reveal,
+  FloatingBotanical,
 } from '../components/motion';
 import {
   brandEase,
+  brandSpring,
   staggerContainerVariants,
   staggerItemVariants,
   goldDividerVariants,
@@ -57,22 +59,15 @@ const HomePage: React.FC = () => {
           aria-hidden="true"
         />
 
-        {/* LAYER A: Subdued studio spice backdrop (atmospheric texture with zero competing foreground package) */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <picture>
-            <source srcSet="/assets/brand/hero-banner.jpg" type="image/jpeg" />
-            <img
-              src="/assets/brand/hero-banner.jpg"
-              alt=""
-              aria-hidden="true"
-              className="w-full h-full object-cover object-right-bottom opacity-15 filter blur-[1px] mix-blend-luminosity"
-            />
-          </picture>
-          {/* Deep dark emerald gradient scrims guaranteeing 100% text contrast and eliminating any competing focal points */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#051C10] via-[#051C10]/95 to-[#051C10]/60 lg:w-3/5" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#051C10] via-[#051C10]/90 to-transparent lg:hidden" />
-          {/* Soft directional studio gold highlight behind the right product zone */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-radial from-brand-gold/15 via-brand-emerald/10 to-transparent blur-3xl pointer-events-none" />
+        {/* LAYER A: Atmospheric Emerald & Gold Studio Lighting (Zero competing background packet) */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+          {/* Deep dark emerald gradient scrim guaranteeing text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#02140B] via-[#062916] to-[#010D07]" />
+          {/* Soft directional studio gold spotlight behind the right constellation zone */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full bg-radial from-brand-gold/20 via-brand-emerald/15 to-transparent blur-3xl pointer-events-none" />
+          <div className="absolute left-10 bottom-10 w-[450px] h-[450px] rounded-full bg-radial from-brand-emerald/25 to-transparent blur-3xl opacity-60 pointer-events-none" />
+          {/* Ethereal diagonal golden light shafts */}
+          <div className="absolute -top-24 right-1/4 w-40 h-[140%] bg-gradient-to-b from-brand-gold/15 via-brand-gold/5 to-transparent rotate-[28deg] blur-3xl opacity-50 pointer-events-none" />
         </div>
 
         {/* Hero Content Grid (Layer C Brand Message & Layer B 9-Product 3D Constellation) */}
@@ -313,42 +308,100 @@ const HomePage: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Visual Column (5 cols): Layered Editorial Composition */}
+            {/* Visual Column (5 cols): Master Spice Trio Editorial Composition */}
             <div className="lg:col-span-5">
               <Reveal direction="left">
                 <div className="relative group">
-                  {/* Decorative rotating gold geometric orbital rings */}
+                  {/* Decorative counter-rotating gold geometric orbital rings (stone grinding heritage motif) */}
                   <div
-                    className="absolute -top-7 -left-7 w-40 h-40 rounded-full border border-brand-gold/25 pointer-events-none animate-[spin_45s_linear_infinite]"
+                    className="absolute -top-7 -left-7 w-44 h-44 rounded-full border border-brand-gold/25 pointer-events-none animate-[spin_40s_linear_infinite]"
                     aria-hidden="true"
                   />
                   <div
-                    className="absolute -bottom-9 -right-9 w-52 h-52 rounded-full border border-brand-gold/15 pointer-events-none"
+                    className="absolute -bottom-9 -right-9 w-56 h-56 rounded-full border border-brand-gold/20 pointer-events-none animate-[spin_60s_linear_infinite_reverse]"
                     aria-hidden="true"
+                  />
+
+                  {/* Floating Spice Botanicals framing the master trio */}
+                  <FloatingBotanical
+                    type="star-anise"
+                    className="absolute -top-5 right-6 w-9 h-9 z-20"
+                    duration={5.8}
+                    delay={0.3}
+                  />
+                  <FloatingBotanical
+                    type="cardamom"
+                    className="absolute bottom-16 -left-4 w-8 h-8 z-20"
+                    duration={6.4}
+                    delay={0.8}
                   />
 
                   {/* Main Architectural Studio Frame */}
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-brand-gold/30 bg-[#082817]/85 p-5 sm:p-7 backdrop-blur-md">
                     {/* Background studio image with vignette */}
-                    <div className="relative h-68 sm:h-76 rounded-2xl overflow-hidden mb-5">
-                      <img
-                        src="/assets/brand/hero-banner.jpg"
-                        alt="Ramraj Oil Industries Heritage Studio Presentation"
-                        className="w-full h-full object-cover opacity-35 filter blur-[0.5px] scale-105 group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#082817] via-[#082817]/65 to-transparent" />
-
-                      {/* Foreground floating spice visual with soft ambient halo */}
+                    <div className="relative h-72 sm:h-80 rounded-2xl overflow-hidden mb-5 bg-[#031A0F]">
+                      {/* Ambient warm radial spotlight */}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative w-48 sm:w-52 aspect-square flex items-center justify-center">
-                          <div className="absolute inset-0 rounded-full bg-radial from-brand-gold/35 via-brand-emerald/25 to-transparent blur-xl" />
-                          <img
-                            src="/assets/products/garam-masala.png"
-                            alt="Authentic Garam Masala pouch by RUCHI RICH"
-                            className="max-h-full max-w-full object-contain filter drop-shadow-[0_20px_25px_rgba(0,0,0,0.55)] transform group-hover:-translate-y-2 group-hover:scale-105 transition-all duration-500"
-                          />
-                          {/* Soft pedestal shadow */}
-                          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-32 h-3 bg-black/60 rounded-full blur-[3px]" />
+                        <div className="w-56 h-56 rounded-full bg-radial from-brand-gold/30 via-brand-emerald/20 to-transparent blur-2xl" />
+                      </div>
+
+                      {/* Illuminated Ground Dais for the Trio */}
+                      <div
+                        className="absolute bottom-5 left-1/2 -translate-x-1/2 w-56 h-14 rounded-[100%] bg-gradient-to-b from-brand-gold/25 via-brand-emerald/25 to-black/60 border border-brand-gold/30 shadow-[0_0_30px_rgba(214,165,42,0.2)] pointer-events-none"
+                        style={{ transform: 'translateX(-50%) rotateX(68deg)' }}
+                        aria-hidden="true"
+                      />
+
+                      {/* MASTER SPICE TRIO COMPOSITION */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative w-64 h-56 flex items-center justify-center">
+                          {/* Left: Turmeric Powder (Golden Purity) */}
+                          <motion.div
+                            whileHover={{ y: -6, scale: 1.02 }}
+                            transition={brandSpring}
+                            className="absolute -left-1 bottom-4 z-20 cursor-pointer"
+                          >
+                            <Link to="/product/turmeric-powder" aria-label="View Turmeric Powder">
+                              <img
+                                src="/assets/products/turmeric-powder.png"
+                                alt="Authentic Turmeric Powder by RUCHI RICH"
+                                className="h-40 sm:h-44 w-auto object-contain filter drop-shadow-[0_14px_18px_rgba(0,0,0,0.45)] transform -rotate-6"
+                              />
+                              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-24 h-2 bg-black/60 rounded-full blur-[2px]" />
+                            </Link>
+                          </motion.div>
+
+                          {/* Center: Garam Masala (The Royal Blend) */}
+                          <motion.div
+                            whileHover={{ y: -8, scale: 1.05 }}
+                            transition={brandSpring}
+                            className="absolute left-1/2 -translate-x-1/2 bottom-5 z-30 cursor-pointer"
+                          >
+                            <Link to="/product/garam-masala" aria-label="View Garam Masala">
+                              <img
+                                src="/assets/products/garam-masala.png"
+                                alt="Authentic Garam Masala by RUCHI RICH"
+                                className="h-44 sm:h-48 w-auto object-contain filter drop-shadow-[0_20px_25px_rgba(0,0,0,0.55)]"
+                              />
+                              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-28 h-2.5 bg-black/70 rounded-full blur-[2.5px]" />
+                            </Link>
+                          </motion.div>
+
+                          {/* Right: Red Chilli Powder (Fiery Warmth) */}
+                          <motion.div
+                            whileHover={{ y: -6, scale: 1.02 }}
+                            transition={brandSpring}
+                            className="absolute -right-1 bottom-4 z-20 cursor-pointer"
+                          >
+                            <Link to="/product/red-chilli-powder" aria-label="View Red Chilli Powder">
+                              <img
+                                src="/assets/products/red-chilli-powder.png"
+                                alt="Authentic Red Chilli Powder by RUCHI RICH"
+                                className="h-40 sm:h-44 w-auto object-contain filter drop-shadow-[0_14px_18px_rgba(0,0,0,0.45)] transform rotate-6"
+                              />
+                              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-24 h-2 bg-black/60 rounded-full blur-[2px]" />
+                            </Link>
+                          </motion.div>
                         </div>
                       </div>
                     </div>
