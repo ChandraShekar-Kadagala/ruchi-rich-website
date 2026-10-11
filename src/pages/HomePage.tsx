@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, MessageCircle, Sparkles, ShieldCheck, Flame, Award, ChevronRight } from 'lucide-react';
+import { ArrowRight, MessageCircle, Sparkles, ShieldCheck, Flame, Award, ChevronRight, MapPin, CheckCircle2 } from 'lucide-react';
 import { products } from '../data/products';
 import ProductCard from '../components/products/ProductCard';
 import { contactConfig } from '../config/contact';
@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
           Layer B: Dominant foreground 3D product stage with illuminated pedestal
           Layer C: Clear brand message, concise copy, and high-visibility CTAs
           ========================================================================= */}
-      <section className="relative min-h-[680px] lg:min-h-[760px] bg-gradient-to-br from-[#051C10] via-[#0A331C] to-[#04150B] overflow-hidden flex items-center">
+      <section className="relative min-h-[660px] lg:min-h-[760px] bg-gradient-to-br from-[#051C10] via-[#0A331C] to-[#04150B] overflow-x-clip overflow-y-hidden flex items-center">
         {/* Subtle Ambient Golden Spice Specks */}
         <SpiceDustParticles />
 
@@ -76,7 +76,7 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Hero Content Grid (Layer C Brand Message & Layer B 9-Product 3D Constellation) */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-12 sm:py-16 lg:py-20 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-8 sm:py-14 lg:py-20 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
             {/* Left Content Column (5 cols on lg, 5 cols on xl): Layer C Brand Message */}
             <div className="lg:col-span-5 max-w-xl text-left z-20">
@@ -123,7 +123,7 @@ const HomePage: React.FC = () => {
               </motion.p>
 
               {/* Mobile 9-Product Showcase (Displayed responsively on screens < 1024px) */}
-              <div className="my-6 lg:hidden flex justify-center w-full">
+              <div className="my-4 lg:hidden flex justify-center w-full overflow-visible">
                 <ProductConstellationHero />
               </div>
 
@@ -214,10 +214,10 @@ const HomePage: React.FC = () => {
             </motion.div>
 
             <motion.div variants={staggerItemVariants} className="flex flex-col md:flex-row items-center gap-3.5">
-              <Award className="w-7 h-7 text-brand-gold flex-shrink-0" />
+              <MapPin className="w-7 h-7 text-brand-gold flex-shrink-0" />
               <div>
-                <div className="font-bold text-base sm:text-lg">Ramraj Oil Industries</div>
-                <div className="text-sm text-brand-ivory/80 font-light">ALEAP Estate, Surampalli</div>
+                <div className="font-bold text-base sm:text-lg">Our Location</div>
+                <div className="text-sm text-brand-ivory/80 font-light">Surampalli, Andhra Pradesh</div>
               </div>
             </motion.div>
 
@@ -297,14 +297,19 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* =========================================================================
-          PHASE G: EDITORIAL HERITAGE & MISSION SHOWCASE - Scroll Reveal
-          Left: Architectural framed studio photograph with layered floating product & gold rings
-          Right: Editorial headline, animated gold divider line, verified narrative, and dual CTAs
+          PHASE G: EDITORIAL HERITAGE & MISSION — THE LIVING SPICE ATELIER
+          Left: Architectural framed studio photograph with layered floating product & gold orbital rings
+          Right: Editorial headline, animated gold divider line, 3 craft pillars, and dual CTAs
           ========================================================================= */}
-      <section className="py-20 sm:py-28 bg-gradient-to-b from-[#051C10] via-brand-forest to-[#04150B] text-brand-ivory relative overflow-hidden">
-        {/* Subtle decorative gold ambient glow */}
-        <div className="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-brand-gold/10 blur-3xl pointer-events-none" />
-        <div className="absolute -left-24 top-1/4 w-80 h-80 rounded-full bg-brand-emerald/15 blur-3xl pointer-events-none" />
+      <section className="py-20 sm:py-28 bg-gradient-to-b from-[#051C10] via-[#082817] to-[#04150B] text-brand-ivory relative overflow-hidden">
+        {/* Ambient Golden Light Rays & Atelier Radiance */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+          <div className="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-brand-gold/15 blur-3xl" />
+          <div className="absolute -left-24 top-1/4 w-80 h-80 rounded-full bg-brand-emerald/20 blur-3xl" />
+          {/* Ethereal golden light beams */}
+          <div className="absolute -top-10 right-1/3 w-32 h-[120%] bg-gradient-to-b from-brand-gold/10 via-brand-gold/5 to-transparent rotate-[25deg] blur-2xl" />
+          <div className="absolute top-1/4 left-1/4 w-24 h-[100%] bg-gradient-to-b from-brand-emerald/15 via-brand-emerald/5 to-transparent -rotate-[15deg] blur-2xl" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -312,53 +317,60 @@ const HomePage: React.FC = () => {
             <div className="lg:col-span-5">
               <Reveal direction="left">
                 <div className="relative group">
-                  {/* Decorative rotating gold geometric rings */}
+                  {/* Decorative rotating gold geometric orbital rings */}
                   <div
-                    className="absolute -top-6 -left-6 w-36 h-36 rounded-full border border-brand-gold/20 pointer-events-none animate-[spin_40s_linear_infinite]"
+                    className="absolute -top-7 -left-7 w-40 h-40 rounded-full border border-brand-gold/25 pointer-events-none animate-[spin_45s_linear_infinite]"
                     aria-hidden="true"
                   />
                   <div
-                    className="absolute -bottom-8 -right-8 w-48 h-48 rounded-full border border-brand-gold/15 pointer-events-none"
+                    className="absolute -bottom-9 -right-9 w-52 h-52 rounded-full border border-brand-gold/15 pointer-events-none"
                     aria-hidden="true"
                   />
 
                   {/* Main Architectural Studio Frame */}
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-brand-gold/30 bg-[#082817]/80 p-5 sm:p-7 backdrop-blur-md">
-                    {/* Background studio image with darkened overlay */}
-                    <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden mb-5">
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-brand-gold/30 bg-[#082817]/85 p-5 sm:p-7 backdrop-blur-md">
+                    {/* Background studio image with vignette */}
+                    <div className="relative h-68 sm:h-76 rounded-2xl overflow-hidden mb-5">
                       <img
                         src="/assets/brand/hero-banner.jpg"
                         alt="Ramraj Oil Industries Heritage Studio Presentation"
-                        className="w-full h-full object-cover opacity-40 filter blur-[0.5px] scale-105 group-hover:scale-110 transition-transform duration-700"
+                        className="w-full h-full object-cover opacity-35 filter blur-[0.5px] scale-105 group-hover:scale-110 transition-transform duration-700"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#082817] via-[#082817]/60 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#082817] via-[#082817]/65 to-transparent" />
 
                       {/* Foreground floating spice visual with soft ambient halo */}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative w-44 sm:w-48 aspect-square flex items-center justify-center">
-                          <div className="absolute inset-0 rounded-full bg-radial from-brand-gold/30 via-brand-emerald/20 to-transparent blur-xl" />
+                        <div className="relative w-48 sm:w-52 aspect-square flex items-center justify-center">
+                          <div className="absolute inset-0 rounded-full bg-radial from-brand-gold/35 via-brand-emerald/25 to-transparent blur-xl" />
                           <img
                             src="/assets/products/garam-masala.png"
                             alt="Authentic Garam Masala pouch by RUCHI RICH"
-                            className="max-h-full max-w-full object-contain filter drop-shadow-[0_16px_20px_rgba(0,0,0,0.5)] transform group-hover:-translate-y-1 group-hover:scale-105 transition-all duration-500"
+                            className="max-h-full max-w-full object-contain filter drop-shadow-[0_20px_25px_rgba(0,0,0,0.55)] transform group-hover:-translate-y-2 group-hover:scale-105 transition-all duration-500"
                           />
+                          {/* Soft pedestal shadow */}
+                          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-32 h-3 bg-black/60 rounded-full blur-[3px]" />
                         </div>
                       </div>
                     </div>
 
-                    {/* Manufacturing & Company Identity Panel */}
-                    <div className="bg-[#051C10]/90 backdrop-blur-md p-4 rounded-xl border border-brand-gold/25 shadow-lg flex items-center gap-3.5">
-                      <div className="p-2.5 rounded-lg bg-brand-gold/15 text-brand-gold flex-shrink-0">
-                        <Award className="w-5 h-5" />
+                    {/* Manufacturing Facility Identity Plaque */}
+                    <div className="bg-[#051C10]/95 backdrop-blur-md p-4 rounded-xl border border-brand-gold/30 shadow-lg flex items-center justify-between gap-3.5">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2.5 rounded-lg bg-brand-gold/15 text-brand-gold border border-brand-gold/25 flex-shrink-0">
+                          <Award className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold uppercase tracking-widest text-brand-gold font-serif block">
+                            Ramraj Oil Industries
+                          </span>
+                          <span className="text-xs text-brand-ivory/80 block mt-0.5 font-light">
+                            ALEAP Industrial Estate, Surampalli, Andhra Pradesh
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-xs font-bold uppercase tracking-widest text-brand-gold font-serif block">
-                          Ramraj Oil Industries
-                        </span>
-                        <span className="text-xs text-brand-ivory/80 block mt-0.5 font-light">
-                          ALEAP Industrial Estate, Surampalli, Andhra Pradesh
-                        </span>
-                      </div>
+                      <span className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-emerald/40 text-brand-gold border border-brand-gold/30">
+                        Verified Facility
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -371,14 +383,14 @@ const HomePage: React.FC = () => {
                 <div className="space-y-6">
                   {/* Eyebrow Label */}
                   <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs sm:text-sm font-bold uppercase tracking-wider">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>OUR HERITAGE & MISSION</span>
+                    <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
+                    <span>THE LIVING SPICE ATELIER • HERITAGE & CRAFT</span>
                   </div>
 
                   {/* Editorial Headline */}
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-ivory leading-tight">
                     Preserving the Essence of <br className="hidden sm:inline" />
-                    <span className="text-brand-gold">Indian Kitchens</span>
+                    <span className="text-brand-gold">Indian Culinary Heritage</span>
                   </h2>
 
                   {/* Animated Gold Divider Line */}
@@ -400,6 +412,25 @@ const HomePage: React.FC = () => {
                   <p className="text-base sm:text-lg text-brand-ivory/90 leading-relaxed font-light">
                     Carefully selected raw spices are cleaned, processed, and stone-ground under hygienic conditions engineered to retain natural volatile oils and aroma. Every blend delivers vibrant colour, invigorating pungency, and wholesome flavour directly to your home.
                   </p>
+
+                  {/* 3 Pillars / Quality Highlights */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+                      <CheckCircle2 className="w-4 h-4 text-brand-gold mb-1.5" />
+                      <div className="text-xs font-bold text-brand-ivory">Native Essential Oils</div>
+                      <div className="text-[11px] text-brand-ivory/70 font-light mt-0.5">Retains aroma & natural pungency</div>
+                    </div>
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+                      <CheckCircle2 className="w-4 h-4 text-brand-gold mb-1.5" />
+                      <div className="text-xs font-bold text-brand-ivory">Zero Artificial Additives</div>
+                      <div className="text-[11px] text-brand-ivory/70 font-light mt-0.5">No artificial colors or fillers</div>
+                    </div>
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+                      <CheckCircle2 className="w-4 h-4 text-brand-gold mb-1.5" />
+                      <div className="text-xs font-bold text-brand-ivory">ALEAP Standards</div>
+                      <div className="text-[11px] text-brand-ivory/70 font-light mt-0.5">Surampalli manufacturing facility</div>
+                    </div>
+                  </div>
 
                   {/* Dual Action CTAs */}
                   <div className="pt-2 flex flex-wrap gap-4">

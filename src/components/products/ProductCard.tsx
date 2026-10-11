@@ -77,22 +77,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           aria-hidden="true"
         />
 
-        {/* 3D Pouch Container */}
+        {/* 3D Pouch Container with aligned bottom pedestal baseline */}
         <motion.div
           style={{
             transformStyle: enable3D ? 'preserve-3d' : undefined,
             rotateX: enable3D ? rotateX : 0,
             rotateY: enable3D ? rotateY : 0,
           }}
-          className="absolute inset-0 flex flex-col items-center justify-center p-6"
+          className="absolute inset-0 flex flex-col items-center justify-end pb-7 pt-12 px-6"
         >
           {/* Packaging Image Stage */}
-          <div className="relative w-full h-full flex items-center justify-center">
+          <div className="relative w-full h-full flex items-end justify-center">
             <img
               src={product.image}
               alt={`Authentic package of ${product.name} by RUCHI RICH`}
               loading="lazy"
-              className="max-w-full max-h-full object-contain filter drop-shadow-[0_18px_24px_rgba(0,35,15,0.3)] drop-shadow-[0_4px_8px_rgba(0,0,0,0.12)] transform group-hover:scale-106 group-hover:-translate-y-1.5 transition-all duration-400 ease-out"
+              className="max-w-full max-h-[88%] object-contain object-bottom filter drop-shadow-[0_18px_24px_rgba(0,35,15,0.3)] drop-shadow-[0_4px_8px_rgba(0,0,0,0.12)] transform group-hover:scale-106 group-hover:-translate-y-1.5 transition-all duration-400 ease-out"
             />
 
             {/* Cursor-responsive Softbox Studio Foil Highlight Reflection */}
@@ -119,22 +119,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           />
         </motion.div>
 
-        {/* Badges (Top Left) */}
-        <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 z-10">
-          {product.badges?.map((badge) => (
-            <span
-              key={badge}
-              className="bg-brand-red text-white text-xs font-bold tracking-wider uppercase px-2.5 py-1 rounded-full shadow-md backdrop-blur-xs"
-            >
-              {badge}
-            </span>
-          ))}
+        {/* Badges & Category Header Row (Guaranteed non-overlapping & standardized inset) */}
+        <div className="absolute top-3.5 inset-x-3.5 flex items-start justify-between gap-2 z-10 pointer-events-none">
+          <div className="flex flex-wrap gap-1.5 max-w-[65%]">
+            {product.badges?.map((badge) => (
+              <span
+                key={badge}
+                className="bg-brand-red text-white text-[11px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full shadow-md backdrop-blur-xs whitespace-nowrap"
+              >
+                {badge}
+              </span>
+            ))}
+          </div>
+          <span className="text-[11px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-brand-forest/90 text-brand-gold shadow-sm backdrop-blur-md border border-brand-gold/30 whitespace-nowrap flex-shrink-0">
+            {product.category}
+          </span>
         </div>
-
-        {/* Category Pill (Top Right) */}
-        <span className="absolute top-3.5 right-3.5 text-xs font-bold tracking-wider uppercase px-3 py-1 rounded-full bg-brand-forest/90 text-brand-gold shadow-sm backdrop-blur-md border border-brand-gold/30">
-          {product.category}
-        </span>
       </Link>
 
       {/* =========================================================================
@@ -147,25 +147,27 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             to={`/product/${product.id}`}
             className="block text-brand-charcoal hover:text-brand-emerald transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-emerald rounded"
           >
-            <h3 className="text-xl sm:text-[23px] font-serif font-bold leading-snug line-clamp-1">
+            <h3 className="text-xl sm:text-[23px] font-serif font-bold leading-snug line-clamp-1 min-h-[1.75rem]">
               {product.name}
             </h3>
           </Link>
 
           {/* Tagline / Aroma Accent */}
-          {product.tagline ? (
-            <p className="text-sm font-semibold text-brand-emerald italic mt-1.5 line-clamp-1 flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-brand-gold flex-shrink-0" />
-              <span>{product.tagline}</span>
-            </p>
-          ) : product.aromaProfile ? (
-            <p className="text-sm font-medium text-brand-emerald/90 italic mt-1.5 line-clamp-1">
-              {product.aromaProfile}
-            </p>
-          ) : null}
+          <div className="min-h-[1.5rem] mt-1.5 flex items-center">
+            {product.tagline ? (
+              <p className="text-sm font-semibold text-brand-emerald italic line-clamp-1 flex items-center gap-1">
+                <Sparkles className="w-3.5 h-3.5 text-brand-gold flex-shrink-0" />
+                <span>{product.tagline}</span>
+              </p>
+            ) : product.aromaProfile ? (
+              <p className="text-sm font-medium text-brand-emerald/90 italic line-clamp-1">
+                {product.aromaProfile}
+              </p>
+            ) : null}
+          </div>
 
           {/* Body Description - 16px minimum with 1.6 line-height */}
-          <p className="text-base text-brand-charcoal/80 mt-3 line-clamp-2 leading-relaxed font-light">
+          <p className="text-base text-brand-charcoal/80 mt-2.5 line-clamp-2 leading-relaxed font-light min-h-[3rem]">
             {product.shortDescription}
           </p>
         </div>
@@ -174,10 +176,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="mt-6 pt-4 border-t border-brand-charcoal/10">
           <Link
             to={`/product/${product.id}`}
-            className="w-full py-3.5 px-5 rounded-xl text-base font-bold text-center bg-brand-emerald hover:bg-brand-forest text-white shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2 group-hover:bg-brand-forest active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald"
+            className="w-full h-12 py-3 px-5 rounded-xl text-base font-bold text-center bg-brand-emerald hover:bg-brand-forest text-white shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2 group-hover:bg-brand-forest active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald"
           >
             <span>Explore Blend</span>
-            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform flex-shrink-0" />
           </Link>
         </div>
       </div>

@@ -88,7 +88,7 @@ export const ProductConstellationHero: React.FC = () => {
       desktopRot: 0,
       desktopScale: 1.04,
       mobileX: 0,
-      mobileY: 28,
+      mobileY: 20,
       mobileRot: 0,
       mobileScale: 0.88,
       zIndex: 35,
@@ -105,8 +105,8 @@ export const ProductConstellationHero: React.FC = () => {
       desktopY: 44,
       desktopRot: -3,
       desktopScale: 0.98,
-      mobileX: -76,
-      mobileY: 36,
+      mobileX: -66,
+      mobileY: 28,
       mobileRot: -3,
       mobileScale: 0.8,
       zIndex: 32,
@@ -123,8 +123,8 @@ export const ProductConstellationHero: React.FC = () => {
       desktopY: 44,
       desktopRot: 3.5,
       desktopScale: 0.98,
-      mobileX: 76,
-      mobileY: 36,
+      mobileX: 66,
+      mobileY: 28,
       mobileRot: 3.5,
       mobileScale: 0.8,
       zIndex: 32,
@@ -143,8 +143,8 @@ export const ProductConstellationHero: React.FC = () => {
       desktopY: -12,
       desktopRot: -5.5,
       desktopScale: 0.88,
-      mobileX: -122,
-      mobileY: -4,
+      mobileX: -106,
+      mobileY: -6,
       mobileRot: -5.5,
       mobileScale: 0.68,
       zIndex: 22,
@@ -162,7 +162,7 @@ export const ProductConstellationHero: React.FC = () => {
       desktopRot: 1.5,
       desktopScale: 0.88,
       mobileX: 0,
-      mobileY: -18,
+      mobileY: -20,
       mobileRot: 1.5,
       mobileScale: 0.72,
       zIndex: 24,
@@ -179,8 +179,8 @@ export const ProductConstellationHero: React.FC = () => {
       desktopY: -12,
       desktopRot: 5,
       desktopScale: 0.88,
-      mobileX: 122,
-      mobileY: -4,
+      mobileX: 106,
+      mobileY: -6,
       mobileRot: 5,
       mobileScale: 0.68,
       zIndex: 22,
@@ -199,8 +199,8 @@ export const ProductConstellationHero: React.FC = () => {
       desktopY: -78,
       desktopRot: -7,
       desktopScale: 0.76,
-      mobileX: -92,
-      mobileY: -46,
+      mobileX: -78,
+      mobileY: -48,
       mobileRot: -7,
       mobileScale: 0.58,
       zIndex: 12,
@@ -235,8 +235,8 @@ export const ProductConstellationHero: React.FC = () => {
       desktopY: -78,
       desktopRot: 7,
       desktopScale: 0.76,
-      mobileX: 92,
-      mobileY: -46,
+      mobileX: 78,
+      mobileY: -48,
       mobileRot: 7,
       mobileScale: 0.58,
       zIndex: 12,
@@ -251,7 +251,7 @@ export const ProductConstellationHero: React.FC = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full h-[360px] sm:h-[440px] lg:h-[520px] xl:h-[560px] flex items-center justify-center select-none"
+      className="relative w-full h-[310px] sm:h-[400px] lg:h-[520px] xl:h-[560px] flex items-center justify-center select-none"
       style={{ perspective: enable3D ? 1100 : undefined }}
     >
       {/* Ambient warm radial halo illuminating the constellation center */}
@@ -262,11 +262,11 @@ export const ProductConstellationHero: React.FC = () => {
 
       {/* Architectural ground pedestal stage with golden rim reflection */}
       <div
-        className="absolute bottom-4 sm:bottom-6 w-[85%] max-w-[560px] h-28 sm:h-36 rounded-[100%] bg-gradient-to-b from-brand-gold/20 via-brand-emerald/25 to-black/50 border border-brand-gold/30 shadow-[0_0_40px_rgba(214,165,42,0.18)] pointer-events-none -z-5"
+        className="absolute bottom-5 sm:bottom-6 w-[86%] max-w-[560px] h-20 sm:h-36 rounded-[100%] bg-gradient-to-b from-brand-gold/20 via-brand-emerald/25 to-black/50 border border-brand-gold/30 shadow-[0_0_40px_rgba(214,165,42,0.18)] pointer-events-none -z-5"
         style={{ transform: 'rotateX(68deg)' }}
         aria-hidden="true"
       >
-        <div className="absolute inset-3 rounded-[100%] border border-brand-gold/25" />
+        <div className="absolute inset-2 sm:inset-3 rounded-[100%] border border-brand-gold/25" />
       </div>
 
       {/* Main 3D Constellation Canvas */}
@@ -409,9 +409,9 @@ export const ProductConstellationHero: React.FC = () => {
       </motion.div>
 
       {/* Mobile Badge / Discovery Pill */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 lg:hidden bg-brand-forest/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-brand-gold/30 shadow-md flex items-center gap-2 pointer-events-none">
-        <Sparkles className="w-3.5 h-3.5 text-brand-gold flex-shrink-0" />
-        <span className="text-xs text-brand-ivory font-medium">
+      <div className="absolute -bottom-1 sm:bottom-0 left-1/2 -translate-x-1/2 lg:hidden bg-brand-forest/95 backdrop-blur-md px-3.5 py-1 rounded-full border border-brand-gold/30 shadow-md flex items-center gap-1.5 pointer-events-none whitespace-nowrap">
+        <Sparkles className="w-3 h-3 text-brand-gold flex-shrink-0" />
+        <span className="text-[11px] text-brand-ivory font-medium">
           All 9 Authentic Spice Blends • Tap to explore
         </span>
       </div>
