@@ -19,6 +19,7 @@ import { useCartStore } from '../store/useCartStore';
 import { contactConfig } from '../config/contact';
 import ProductCard from '../components/products/ProductCard';
 import { ProductStage3D, Reveal } from '../components/motion';
+import { spiceThemes, defaultSpiceTheme } from '../utils/spiceThemes';
 import { brandEase, brandSpring, staggerContainerVariants, staggerItemVariants } from '../utils/motion';
 
 const ProductDetailPage: React.FC = () => {
@@ -101,6 +102,15 @@ const ProductDetailPage: React.FC = () => {
                 PHASE D: 3D SACHET PRESENTATION STAGE (5 cols)
                 ========================================================================= */}
             <div className="lg:col-span-5 bg-gradient-to-b from-brand-ivory via-white to-brand-emerald/[0.05] p-8 sm:p-12 flex flex-col items-center justify-center relative border-b lg:border-b-0 lg:border-r border-brand-charcoal/10 overflow-hidden">
+              {/* Product-Specific Ambient Spice Glow */}
+              <div
+                className="absolute inset-0 m-auto w-4/5 h-4/5 rounded-full blur-3xl pointer-events-none opacity-40 -z-10"
+                style={{
+                  backgroundColor: (spiceThemes[product.id] || defaultSpiceTheme).primary,
+                }}
+                aria-hidden="true"
+              />
+
               {/* Badges */}
               <div className="absolute top-6 left-6 flex flex-col gap-2 z-20">
                 {product.badges?.map((badge) => (
@@ -114,7 +124,7 @@ const ProductDetailPage: React.FC = () => {
               </div>
 
               {/* Package Image Stage with 3D Depth & Cursor Spring Tilt */}
-              <div className="w-full max-w-sm sm:max-w-md aspect-square flex items-center justify-center py-4">
+              <div className="w-full max-w-sm sm:max-w-md aspect-square flex items-center justify-center py-4 relative">
                 <ProductStage3D
                   image={product.image}
                   alt={`Representation of ${product.name} pouch by RUCHI RICH`}

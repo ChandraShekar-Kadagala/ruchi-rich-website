@@ -8,7 +8,7 @@ import { contactConfig } from '../config/contact';
 import {
   BrandIntro,
   SpiceDustParticles,
-  ProductStage3D,
+  ProductConstellationHero,
   Reveal,
 } from '../components/motion';
 import {
@@ -23,9 +23,6 @@ const HomePage: React.FC = () => {
   const featuredProducts = products
     .filter((p) => p.badges?.includes('Bestseller') || p.badges?.includes('Premium Blend') || p.badges?.includes("Chef's Choice"))
     .slice(0, 3);
-
-  // Main featured hero product for interactive showcase (Signature Turmeric Powder)
-  const heroProduct = products.find((p) => p.id === 'turmeric-powder') || products[0];
 
   return (
     <div className="flex flex-col overflow-hidden relative">
@@ -78,11 +75,11 @@ const HomePage: React.FC = () => {
           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-radial from-brand-gold/15 via-brand-emerald/10 to-transparent blur-3xl pointer-events-none" />
         </div>
 
-        {/* Hero Content Grid (Layer C Brand Message & Layer B Product Stage) */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-12 sm:py-16 lg:py-24 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Content Column (7 cols): Layer C Brand Message */}
-            <div className="lg:col-span-7 max-w-2xl text-left">
+        {/* Hero Content Grid (Layer C Brand Message & Layer B 9-Product 3D Constellation) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-12 sm:py-16 lg:py-20 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+            {/* Left Content Column (5 cols on lg, 5 cols on xl): Layer C Brand Message */}
+            <div className="lg:col-span-5 max-w-xl text-left z-20">
               {/* Eyebrow Pill Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 14 }}
@@ -91,7 +88,7 @@ const HomePage: React.FC = () => {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-emerald/40 border border-brand-gold/40 text-brand-gold text-xs sm:text-sm font-semibold tracking-wider uppercase mb-5 backdrop-blur-md shadow-sm"
               >
                 <Sparkles className="w-4 h-4 text-brand-gold animate-pulse flex-shrink-0" />
-                <span>RAMRAJ OIL INDUSTRIES • FRESH & ACTIVE</span>
+                <span>RUCHI RICH • BY RAMRAJ OIL INDUSTRIES</span>
               </motion.div>
 
               {/* Headline with Sequenced Line Reveals */}
@@ -100,7 +97,7 @@ const HomePage: React.FC = () => {
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.65, delay: 0.12, ease: brandEase }}
-                  className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-brand-ivory leading-[1.18] tracking-tight"
+                  className="text-4xl sm:text-5xl lg:text-[54px] font-serif font-bold text-brand-ivory leading-[1.16] tracking-tight"
                 >
                   The Royal Aroma of <br />
                   <span className="text-brand-gold relative inline-block">
@@ -120,21 +117,14 @@ const HomePage: React.FC = () => {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.28, ease: brandEase }}
-                className="text-base sm:text-lg lg:text-xl text-brand-ivory/90 leading-relaxed font-light"
+                className="text-base sm:text-lg text-brand-ivory/90 leading-relaxed font-light"
               >
                 Discover authentic Indian spices, carefully prepared to bring vibrant colour, rich aroma and flavour to everyday cooking.
               </motion.p>
 
-              {/* Mobile Product Visual (Shown between copy and CTAs on small viewports so mobile users experience the 3D stage) */}
-              <div className="my-6 lg:hidden flex justify-center">
-                <div className="w-full max-w-xs relative py-2">
-                  <ProductStage3D
-                    image={heroProduct.image}
-                    alt={`Authentic ${heroProduct.name} package by RUCHI RICH`}
-                    priority={true}
-                    imageClassName="max-h-[260px] w-auto"
-                  />
-                </div>
+              {/* Mobile 9-Product Showcase (Displayed responsively on screens < 1024px) */}
+              <div className="my-6 lg:hidden flex justify-center w-full">
+                <ProductConstellationHero />
               </div>
 
               {/* CTA Buttons with Refined Micro-Interactions */}
@@ -187,43 +177,9 @@ const HomePage: React.FC = () => {
               </motion.div>
             </div>
 
-            {/* Right Visual Column (5 cols): Layer B Dominant Product Stage on Desktop */}
-            <div className="lg:col-span-5 hidden lg:flex items-center justify-center relative">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.92, y: 25 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.25, ease: brandEase }}
-                className="w-full max-w-md relative flex flex-col items-center justify-center"
-              >
-                {/* Golden Halo Ring behind hero pouch */}
-                <div
-                  className="absolute inset-0 m-auto w-80 h-80 rounded-full border border-brand-gold/20 animate-[spin_32s_linear_infinite] pointer-events-none"
-                  aria-hidden="true"
-                />
-
-                <ProductStage3D
-                  image={heroProduct.image}
-                  alt={`Authentic ${heroProduct.name} package by RUCHI RICH`}
-                  priority={true}
-                  imageClassName="max-h-[380px] w-auto"
-                />
-
-                {/* Floating Authentic Quality Seal Badge */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.7, duration: 0.5 }}
-                  className="absolute -bottom-2 -left-4 bg-[#051C10]/95 backdrop-blur-md p-3.5 rounded-2xl border border-brand-gold/40 shadow-xl flex items-center gap-2.5 text-left"
-                >
-                  <div className="p-2 rounded-xl bg-brand-gold/20 text-brand-gold">
-                    <Flame className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="block text-xs font-bold text-brand-gold font-serif">Fresh & Active Spices</span>
-                    <span className="block text-[11px] text-brand-ivory/80">Aroma & Essential Oils Preserved</span>
-                  </div>
-                </motion.div>
-              </motion.div>
+            {/* Right Visual Column (7 cols): Layer B Complete 9-Product 3D Constellation on Desktop */}
+            <div className="lg:col-span-7 hidden lg:flex items-center justify-center relative w-full">
+              <ProductConstellationHero />
             </div>
           </div>
         </div>

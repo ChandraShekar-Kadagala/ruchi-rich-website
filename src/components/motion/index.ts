@@ -2,3 +2,5 @@ export * from './ProductStage3D';
 export * from './Reveal';
 export * from './BrandIntro';
 export * from './SpiceDustParticles';
+export * from './ProductConstellationHero';
+export * from './ProductSpiceBurst';

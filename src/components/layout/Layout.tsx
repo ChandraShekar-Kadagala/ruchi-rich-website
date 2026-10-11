@@ -5,6 +5,7 @@ import AnnouncementBar from './AnnouncementBar';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import CartDrawer from '../cart/CartDrawer';
+import { ProductSpiceBurstToast } from '../motion/ProductSpiceBurst';
 
 const Layout: React.FC = () => {
   const location = useLocation();
@@ -26,6 +27,7 @@ const Layout: React.FC = () => {
       </main>
       <Footer />
       <CartDrawer />
+      <ProductSpiceBurstToast />
     </div>
   );
 };

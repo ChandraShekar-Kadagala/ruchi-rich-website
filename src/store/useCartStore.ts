@@ -3,16 +3,25 @@ import { persist } from 'zustand/middleware';
 import { CartItem } from '../types/cart';
 import { Product, PackageOption } from '../types/product';
 
+export interface LastAddedItem {
+  product: Product;
+  selectedOption: PackageOption;
+  quantity: number;
+  timestamp: number;
+}
+
 interface CartState {
   items: CartItem[];
   isDrawerOpen: boolean;
+  lastAdded: LastAddedItem | null;
   openDrawer: () => void;
   closeDrawer: () => void;
   toggleDrawer: () => void;
-  addItem: (product: Product, option: PackageOption, quantity: number) => void;
+  addItem: (product: Product, option: PackageOption, quantity: number, openDrawer?: boolean) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
+  clearLastAdded: () => void;
   getCartCount: () => number;
 }
 
@@ -21,26 +30,31 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       items: [],
       isDrawerOpen: false,
+      lastAdded: null,
       openDrawer: () => set({ isDrawerOpen: true }),
       closeDrawer: () => set({ isDrawerOpen: false }),
       toggleDrawer: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
-      addItem: (product, option, quantity) => {
+      clearLastAdded: () => set({ lastAdded: null }),
+      addItem: (product, option, quantity, shouldOpenDrawer = false) => {
         set((state) => {
           const id = `${product.id}-${option.id}`;
           const existingItem = state.items.find((item) => item.id === id);
 
-          if (existingItem) {
-            return {
-              items: state.items.map((item) =>
+          const newItems = existingItem
+            ? state.items.map((item) =>
                 item.id === id ? { ...item, quantity: item.quantity + quantity } : item
-              ),
-              isDrawerOpen: true,
-            };
-          }
+              )
+            : [...state.items, { id, product, selectedOption: option, quantity }];
 
           return {
-            items: [...state.items, { id, product, selectedOption: option, quantity }],
-            isDrawerOpen: true,
+            items: newItems,
+            isDrawerOpen: shouldOpenDrawer ? true : state.isDrawerOpen,
+            lastAdded: {
+              product,
+              selectedOption: option,
+              quantity,
+              timestamp: Date.now(),
+            },
           };
         });
       },
