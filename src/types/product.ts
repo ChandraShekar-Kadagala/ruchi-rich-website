@@ -13,4 +13,8 @@ export type Product = {
   options: PackageOption[];
   available: boolean;
   badges?: string[];
+  tagline?: string;
+  aromaProfile?: string;
+  flavorNotes?: string[];
+  culinaryUses?: string[];
 };

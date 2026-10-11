@@ -13,12 +13,16 @@ export default {
           gold: '#D6A52A',
           red: '#D92720',
           ivory: '#FFFDF7',
-          charcoal: '#242321'
+          charcoal: '#242321',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Merriweather', 'serif']
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['Cinzel', 'Merriweather', 'serif']
+      },
+      scale: {
+        '102': '1.02',
+        '108': '1.08',
       }
     },
   },

@@ -1,6 +1,5 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
-import path from 'path';
 
 console.log('--- GitHub Auto-Watch Mode ---');
 console.log('Warning: Watcher mode can create many commits and publish intermediate work.');

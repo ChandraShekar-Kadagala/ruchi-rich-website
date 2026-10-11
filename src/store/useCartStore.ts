@@ -5,6 +5,10 @@ import { Product, PackageOption } from '../types/product';
 
 interface CartState {
   items: CartItem[];
+  isDrawerOpen: boolean;
+  openDrawer: () => void;
+  closeDrawer: () => void;
+  toggleDrawer: () => void;
   addItem: (product: Product, option: PackageOption, quantity: number) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
@@ -16,6 +20,10 @@ export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
+      isDrawerOpen: false,
+      openDrawer: () => set({ isDrawerOpen: true }),
+      closeDrawer: () => set({ isDrawerOpen: false }),
+      toggleDrawer: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
       addItem: (product, option, quantity) => {
         set((state) => {
           const id = `${product.id}-${option.id}`;
@@ -26,11 +34,13 @@ export const useCartStore = create<CartState>()(
               items: state.items.map((item) =>
                 item.id === id ? { ...item, quantity: item.quantity + quantity } : item
               ),
+              isDrawerOpen: true,
             };
           }
 
           return {
             items: [...state.items, { id, product, selectedOption: option, quantity }],
+            isDrawerOpen: true,
           };
         });
       },
@@ -42,7 +52,7 @@ export const useCartStore = create<CartState>()(
       updateQuantity: (id, quantity) => {
         set((state) => ({
           items: state.items.map((item) =>
-            item.id === id ? { ...item, quantity } : item
+            item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
           ),
         }));
       },
@@ -51,6 +61,7 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: 'ruchi-rich-cart',
+      partialize: (state) => ({ items: state.items }),
     }
   )
 );
